@@ -1307,3 +1307,38 @@
     border-radius: 3px;
     font-size: 0.8rem;
 }
+.admin-table img {
+    max-width: 100px;
+    max-height: 100px;
+    object-fit: cover;
+    border-radius: 4px;
+    border: 1px solid #444;
+}
+
+.badge {
+    padding: 5px 10px;
+    border-radius: 12px;
+    font-size: 12px;
+}
+
+.bg-warning {
+    background-color: #ffc107;
+    color: #000;
+}
+
+.bg-info {
+    background-color: #0dcaf0;
+    color: #000;
+}
+
+.bg-secondary {
+    background-color: #6c757d;
+}
+
+.bg-success {
+    background-color: #198754;
+}
+
+.bg-danger {
+    background-color: #dc3545;
+}

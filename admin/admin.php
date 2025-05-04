@@ -2,6 +2,12 @@
 session_start();
 require_once('../php/db.php');
 
+// Проверка прав администратора
+if ($_SESSION['user_role'] !== 'admin') {
+    header('Location: /auth/login.php');
+    exit;
+}
+
 // Получаем статистику для дашборда
 $stats = [
     'articles' => $conn->query("SELECT COUNT(*) FROM articles")->fetch_row()[0],
@@ -24,6 +30,39 @@ if (isset($_GET['action'])) {
                 $stmt->execute();
                 $_SESSION['message'] = 'Статья успешно удалена';
                 header('Location: admin.php?page=articles');
+                exit;
+            }
+            break;
+            
+        case 'delete_artwork':
+            if (isset($_GET['id'])) {
+                $id = intval($_GET['id']);
+                
+                // Сначала получаем информацию о работе для удаления файла
+                $stmt = $conn->prepare("SELECT image_path FROM artworks WHERE id = ?");
+                $stmt->bind_param("i", $id);
+                $stmt->execute();
+                $result = $stmt->get_result();
+                $artwork = $result->fetch_assoc();
+                
+                if ($artwork) {
+                    // Удаляем файл изображения
+                    $file_path = '../uploads/artworks/' . $artwork['image_path'];
+                    if (file_exists($file_path)) {
+                        unlink($file_path);
+                    }
+                    
+                    // Удаляем запись из БД
+                    $stmt = $conn->prepare("DELETE FROM artworks WHERE id = ?");
+                    $stmt->bind_param("i", $id);
+                    $stmt->execute();
+                    
+                    $_SESSION['message'] = 'Работа успешно удалена';
+                } else {
+                    $_SESSION['message'] = 'Работа не найдена';
+                }
+                
+                header('Location: admin.php?page=gallery');
                 exit;
             }
             break;
@@ -301,6 +340,97 @@ function getPageTitle($page) {
                                             <a href="../php/article.php?id=<?= $article['id'] ?>" target="_blank" class="admin-action-btn admin-eye-btn" title="Просмотреть">
                                                 <i class="fas fa-eye"></i>
                                             </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <?php endwhile; ?>
+                            </tbody>
+                        </table>
+                    </div>
+
+                <?php elseif ($active_page === 'gallery'): ?>
+                    <!-- Раздел галереи -->
+                    <div class="admin-table-container">
+                        <h2>Управление галереей</h2>
+                        
+                        <?php if (isset($_SESSION['message'])): ?>
+                            <div class="alert alert-success"><?= $_SESSION['message'] ?></div>
+                            <?php unset($_SESSION['message']); ?>
+                        <?php endif; ?>
+                        
+                        <!-- Получаем все работы из галереи -->
+                        <?php
+                        $gallery_query = "SELECT a.*, u.login as author 
+                                         FROM artworks a 
+                                         JOIN users u ON a.user_id = u.id 
+                                         ORDER BY a.created_at DESC";
+                        $gallery_result = $conn->query($gallery_query);
+                        ?>
+                        
+                        <table class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Изображение</th>
+                                    <th>Название</th>
+                                    <th>Автор</th>
+                                    <th>Тип</th>
+                                    <th>Статус</th>
+                                    <th>Дата</th>
+                                    <th>Действия</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php while ($artwork = $gallery_result->fetch_assoc()): ?>
+                                <tr>
+                                    <td><?= $artwork['id'] ?></td>
+                                    <td>
+                                        <img src="/uploads/artworks/<?= $artwork['image_path'] ?>" 
+                                             alt="<?= htmlspecialchars($artwork['title']) ?>" 
+                                             class="admin-gallery-thumb">
+                                    </td>
+                                    <td><?= htmlspecialchars($artwork['title']) ?></td>
+                                    <td><?= htmlspecialchars($artwork['author']) ?></td>
+                                    <td>
+                                        <?php if ($artwork['is_contest']): ?>
+                                            <span class="badge bg-warning">Конкурс</span>
+                                        <?php else: ?>
+                                            <span class="badge bg-info">Галерея</span>
+                                        <?php endif; ?>
+                                    </td>
+                                    <td>
+                                        <?php 
+                                        $status_badges = [
+                                            'pending' => 'bg-secondary',
+                                            'approved' => 'bg-success',
+                                            'rejected' => 'bg-danger'
+                                        ];
+                                        $status_text = [
+                                            'pending' => 'На модерации',
+                                            'approved' => 'Одобрено',
+                                            'rejected' => 'Отклонено'
+                                        ];
+                                        ?>
+                                        <span class="badge <?= $status_badges[$artwork['status']] ?>">
+                                            <?= $status_text[$artwork['status']] ?>
+                                        </span>
+                                    </td>
+                                    <td><?= date('d.m.Y', strtotime($artwork['created_at'])) ?></td>
+                                    <td>
+                                        <div class="admin-actions">
+                                            <a href="admin.php?page=gallery&action=delete_artwork&id=<?= $artwork['id'] ?>" 
+                                               class="admin-action-btn admin-delete-btn" 
+                                               title="Удалить" 
+                                               onclick="return confirm('Вы уверены, что хотите удалить эту работу?')">
+                                                <i class="fas fa-trash"></i>
+                                            </a>
+                                            <?php if ($artwork['status'] == 'pending'): ?>
+                                                <a href="admin.php?page=moderation&approve=<?= $artwork['id'] ?>" 
+                                                   class="admin-action-btn admin-edit-btn" 
+                                                   title="Модерация">
+                                                    <i class="fas fa-gavel"></i>
+                                                </a>
+                                            <?php endif; ?>
                                         </div>
                                     </td>
                                 </tr>

@@ -70,7 +70,7 @@ if ($stmt->affected_rows > 0) {
     mail($admin_email, $subject, $message);
 
     echo json_encode(['success' => true, 'message' => 'Работа успешно загружена и отправлена на модерацию!']);
-    header('Location: ./account.php');
+
 } else {
     // Удаляем файл, если запись в БД не удалась
     unlink($file_path);

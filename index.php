@@ -1,3 +1,15 @@
+<?php
+require_once 'php/db.php';
+
+// Получаем 3 случайные статьи для "Первые шаги в тьму"
+$random_articles = $conn->query("SELECT * FROM articles WHERE status='published' ORDER BY RAND() LIMIT 3");
+
+// Получаем 3 самые просматриваемые статьи для "Проклятые свитки"
+$popular_articles = $conn->query("SELECT * FROM articles WHERE status='published' ORDER BY views DESC LIMIT 3");
+
+// Получаем 3 случайные работы из галереи для "Искаженные видения"
+$random_artworks = $conn->query("SELECT a.*, u.login as author FROM artworks a JOIN users u ON a.user_id = u.id WHERE a.status='approved' ORDER BY RAND() LIMIT 3");
+?>
 
 <!DOCTYPE html>
 <html lang="ru">
@@ -56,7 +68,7 @@
                 <div class="col-lg-8 mx-auto text-center banner-content">
                     <h1 class="banner-title">Ты — лишь инструмент в руках Тьмы</h1>
                     <p class="banner-text">Здесь учат не рисовать. Здесь учат вырезать куски реальности и вшивать их в холст. Добро пожаловать в последнюю академию потерянных искусств.</p>
-                    <button type = "submit" class="cta-btn">Принести Клятву <i class="fas fa-hand-holding-water blood-drip"></i></button>
+                    <button type="submit" class="cta-btn">Принести Клятву <i class="fas fa-hand-holding-water blood-drip"></i></button>
                 </div>
             </div>
         </div>
@@ -67,19 +79,20 @@
         <div class="container">
             <h2 class="section-title text-center mb-5"><span class="title-border">Первые Шаги в Тьму</span></h2>
             <div class="row">
+                <?php while ($article = $random_articles->fetch_assoc()): ?>
                 <div class="col-md-4 mb-4">
                     <div class="start-card">
                         <div class="card-icon">
                             <i class="fas fa-skull"></i>
                             <div class="icon-halo"></div>
                         </div>
-                        <h3>Выбор оружия</h3>
-                        <p>Photoshop, Procreate, Krita — какое проклятие вы выберете?</p>
-                        <a href="#" class="card-link">Изучить проклятья <i class="fas fa-long-arrow-alt-right"></i></a>
+                        <h3><?= htmlspecialchars($article['name']) ?></h3>
+                        <p><?= htmlspecialchars(mb_substr($article['description'], 0, 100)) ?>...</p>
+                        <a href="/php/article.php?id=<?= $article['id'] ?>" class="card-link">Читать <i class="fas fa-long-arrow-alt-right"></i></a>
                         <div class="card-stain stain-1"></div>
                     </div>
                 </div>
-                <!-- Ещё 2 карточки -->
+                <?php endwhile; ?>
             </div>
         </div>
     </section>
@@ -89,25 +102,26 @@
         <div class="container">
             <h2 class="section-title text-center mb-5"><span class="title-border">Проклятые Свитки</span></h2>
             <div class="row">
+                <?php while ($article = $popular_articles->fetch_assoc()): ?>
                 <div class="col-md-6 col-lg-4 mb-4">
                     <div class="article-card">
-                        <div class="article-badge">Топ недели</div>
+                        <div class="article-badge">Просмотров: <?= $article['views'] ?></div>
                         <div class="article-img-container">
-                            <img src="img/article1.jpg" alt="Статья" class="article-img">
+                            <img src="<?= $article['img'] ?>" alt="<?= htmlspecialchars($article['name']) ?>" class="article-img">
                             <div class="img-overlay"></div>
                         </div>
                         <div class="article-content">
-                            <h3>Тени, которые шепчут</h3>
-                            <p>Как заставить тени рассказывать ваши секреты.</p>
+                            <h3><?= htmlspecialchars($article['name']) ?></h3>
+                            <p><?= htmlspecialchars(mb_substr($article['description'], 0, 150)) ?>...</p>
                             <div class="article-meta">
-                                <span class="blood-rating"><i class="fas fa-tint"></i> Кровь: 92%</span>
-                                <a href="#" class="read-more">Читать <i class="fas fa-chevron-right"></i></a>
+                                <span class="blood-rating"><i class="fas fa-eye"></i> <?= $article['views'] ?></span>
+                                <a href="/php/article.php?id=<?= $article['id'] ?>" class="read-more">Читать <i class="fas fa-chevron-right"></i></a>
                             </div>
                         </div>
                         <div class="card-stain stain-2"></div>
                     </div>
                 </div>
-                <!-- Ещё 2 статьи -->
+                <?php endwhile; ?>
             </div>
         </div>
     </section>
@@ -117,20 +131,21 @@
         <div class="container">
             <h2 class="section-title text-center mb-5"><span class="title-border">Искажённые Видения</span></h2>
             <div class="row">
+                <?php while ($artwork = $random_artworks->fetch_assoc()): ?>
                 <div class="col-md-4 mb-4">
                     <div class="artwork-card">
                         <div class="artwork-img-container">
-                            <img src="img/artwork1.jpg" alt="Работа" class="artwork-img">
+                            <img src="/uploads/artworks/<?= $artwork['image_path'] ?>" alt="<?= htmlspecialchars($artwork['title']) ?>" class="artwork-img">
                             <div class="artwork-overlay">
-                                <h3>"Кричащий пиксель"</h3>
-                                <p>Автор: @shadow_painter</p>
-                                <button class="vote-btn"><i class="fas fa-vote-yea"></i> Приговорить</button>
+                                <h3>"<?= htmlspecialchars($artwork['title']) ?>"</h3>
+                                <p>Автор: <?= htmlspecialchars($artwork['author']) ?></p>
+                                <a href="/gallery/view.php?id=<?= $artwork['id'] ?>" class="vote-btn"><i class="fas fa-eye"></i> Смотреть</a>
                             </div>
                             <div class="artwork-glitch"></div>
                         </div>
                     </div>
                 </div>
-                <!-- Ещё 2 работы -->
+                <?php endwhile; ?>
             </div>
         </div>
     </section>
@@ -163,9 +178,9 @@
                 <div class="col-md-4 mb-4">
                     <h3 class="footer-title">Навигация по руинам</h3>
                     <ul class="footer-nav">
-                        <li><a href="#">Главная</a></li>
-                        <li><a href="#">Архивы</a></li>
-                        <li><a href="#">Галерея</a></li>
+                        <li><a href="index.php">Главная</a></li>
+                        <li><a href="../php/archiv.php">Архивы</a></li>
+                        <li><a href="gallery.html">Галерея</a></li>
                         <li><a href="#">Исповедь</a></li>
                     </ul>
                 </div>
