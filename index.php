@@ -1,6 +1,6 @@
 <?php
 require_once 'php/db.php';
-
+session_start();
 // Получаем 3 случайные статьи для "Первые шаги в тьму"
 $random_articles = $conn->query("SELECT * FROM articles WHERE status='published' ORDER BY RAND() LIMIT 3");
 
@@ -54,7 +54,8 @@ $random_artworks = $conn->query("SELECT a.*, u.login as author FROM artworks a J
                         <a href="../php/archiv.php" class="nav-link">Архивы</a>
                         <a href="gallery.html" class="nav-link">Галерея</a>
                         <a href="#" class="nav-link">Исповедь</a>
-                        <a href="auth/login.php" class="auth-btn">Войти в Тень</a>
+                        <a href="auth/login.php" class="auth-btn"><?php echo $_SESSION["user_role"] ? "Убежище" : "Войти в Тень"; ?>
+                        </a>
                     </nav>
                 </div>
             </div>

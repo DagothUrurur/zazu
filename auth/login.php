@@ -1,8 +1,12 @@
 <?php
 session_start();
-if(isset($_SESSION['users_id'])) {
-    header("Location: ../index.php");
+if(isset($_SESSION['user_role'])) {
+    if ($_SESSION['user_role'] === "user"){
+    header("Location: ../account/index.php");
     exit;
+    } else{
+    header("Location: ../admin/admin.php");
+    }
 }
 ?>
 <!DOCTYPE html>

@@ -63,7 +63,7 @@ $artworks = $artworks_result->fetch_all(MYSQLI_ASSOC);
                         <a href="/php/archiv.php" class="nav-link">Архивы</a>
                         <a href="/gallery.php" class="nav-link active">Галерея</a>
                         <a href="confession.html" class="nav-link">Исповедь</a>
-                        <a href="/auth/login.php" class="auth-btn">Войти в Тень</a>
+                        <a href="/auth/login.php" class="auth-btn"><?php $_SESSION["user_role"] ? echo "Убежище" : echo "Войти в Тень";?></a>
                     </nav>
                 </div>
             </div>

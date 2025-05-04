@@ -175,7 +175,7 @@ function getPageTitle($page) {
                         <span class="admin-user-role">Верховный Страж</span>
                     </div>
                 </div>
-                <a href="#" class="admin-logout-btn">
+                <a href="../php/destroy.php" class="admin-logout-btn">
                     <i class="fas fa-sign-out-alt"></i> Выйти
                 </a>
             </div>
