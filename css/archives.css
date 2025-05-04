@@ -1,0 +1,359 @@
+/* Основные стили для страницы архивов */
+.archives-main {
+    padding: 60px 0;
+    position: relative;
+    z-index: 1;
+}
+
+.breadcrumb-section {
+    padding: 15px 0;
+    background-color: rgba(10, 10, 10, 0.5);
+    border-bottom: 1px solid rgba(139, 0, 0, 0.3);
+}
+
+.breadcrumb {
+    background: transparent;
+    padding: 0;
+    margin: 0;
+}
+
+.breadcrumb-item {
+    font-family: 'IM Fell English SC', serif;
+    color: var(--parchment);
+}
+
+.breadcrumb-item a {
+    color: var(--parchment-dark);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.breadcrumb-item a:hover {
+    color: var(--gold);
+}
+
+.breadcrumb-item.active {
+    color: var(--gold-dark);
+}
+
+.breadcrumb-item + .breadcrumb-item::before {
+    color: var(--parchment-dark);
+    content: ">";
+}
+
+.archives-title {
+    font-family: 'IM Fell English SC', serif;
+    font-size: 2.8rem;
+    color: var(--gold);
+    margin-bottom: 10px;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.title-icon {
+    margin-right: 15px;
+    font-size: 2rem;
+    color: var(--blood);
+}
+
+.archives-subtitle {
+    font-size: 1.2rem;
+    color: var(--parchment-dark);
+    margin-bottom: 40px;
+    font-style: italic;
+}
+
+/* Фильтры и поиск */
+.filters-row {
+    margin-bottom: 30px;
+}
+
+.search-box {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.search-box i {
+    position: absolute;
+    left: 15px;
+    color: var(--parchment-dark);
+    z-index: 2;
+}
+
+.search-box input {
+    width: 100%;
+    padding: 10px 20px 10px 40px;
+    background-color: rgba(20, 20, 20, 0.8);
+    border: 1px solid rgba(139, 0, 0, 0.5);
+    color: var(--parchment);
+    font-family: 'Cormorant Garamond', serif;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
+
+.search-box input:focus {
+    outline: none;
+    border-color: var(--blood);
+    box-shadow: 0 0 10px rgba(139, 0, 0, 0.3);
+}
+
+.search-btn {
+    position: absolute;
+    right: 5px;
+    padding: 5px 15px;
+    background-color: var(--blood);
+    color: white;
+    border: none;
+    font-family: 'IM Fell English SC', serif;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.search-btn:hover {
+    background-color: var(--blood-dark);
+}
+
+.sort-box {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.sort-box label {
+    margin-right: 10px;
+    color: var(--parchment-dark);
+    font-family: 'IM Fell English SC', serif;
+}
+
+.sort-select {
+    background-color: rgba(20, 20, 20, 0.8);
+    border: 1px solid rgba(139, 0, 0, 0.5);
+    color: var(--parchment);
+    padding: 5px 10px;
+    border-radius: 2px;
+    font-family: 'Cormorant Garamond', serif;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.sort-select:focus {
+    outline: none;
+    border-color: var(--blood);
+    box-shadow: 0 0 10px rgba(139, 0, 0, 0.3);
+}
+
+/* Категории */
+.category-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+.category-tab {
+    padding: 8px 20px;
+    background-color: rgba(20, 20, 20, 0.8);
+    border: 1px solid rgba(139, 0, 0, 0.3);
+    color: var(--parchment);
+    font-family: 'IM Fell English SC', serif;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: 2px;
+}
+
+.category-tab:hover {
+    border-color: var(--blood);
+    color: var(--gold);
+}
+
+.category-tab.active {
+    background-color: var(--blood);
+    color: white;
+    border-color: var(--blood);
+}
+
+/* Карточки архивов */
+.archive-card {
+    background-color: rgba(10, 10, 10, 0.7);
+    border: 1px solid rgba(139, 0, 0, 0.3);
+    height: 100%;
+    position: relative;
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.archive-card:hover {
+    border-color: var(--blood);
+    box-shadow: 0 0 20px rgba(139, 0, 0, 0.3);
+    transform: translateY(-5px);
+}
+
+.card-badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    padding: 3px 10px;
+    background-color: var(--blood);
+    color: white;
+    font-family: 'IM Fell English SC', serif;
+    font-size: 0.8rem;
+    z-index: 2;
+    border-radius: 2px;
+}
+
+.card-image-container {
+    position: relative;
+    overflow: hidden;
+    height: 200px;
+}
+
+.card-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.image-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top, rgba(10, 10, 10, 0.9), transparent);
+}
+
+.archive-card:hover .card-image {
+    transform: scale(1.05);
+}
+
+.card-content {
+    padding: 20px;
+}
+
+.card-title {
+    font-family: 'IM Fell English SC', serif;
+    color: var(--gold);
+    margin-bottom: 10px;
+    font-size: 1.3rem;
+}
+
+.card-excerpt {
+    color: var(--parchment-dark);
+    margin-bottom: 15px;
+    font-size: 0.95rem;
+}
+
+.card-meta {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    font-size: 0.85rem;
+    color: var(--parchment-dark);
+}
+
+.meta-date, .meta-rating {
+    display: flex;
+    align-items: center;
+}
+
+.meta-date i, .meta-rating i {
+    margin-right: 5px;
+}
+
+.meta-rating {
+    color: var(--blood);
+}
+
+.card-link {
+    display: inline-flex;
+    align-items: center;
+    color: var(--parchment);
+    text-decoration: none;
+    font-family: 'IM Fell English SC', serif;
+    transition: all 0.3s ease;
+}
+
+.card-link:hover {
+    color: var(--gold);
+}
+
+.card-link i {
+    margin-left: 5px;
+    transition: transform 0.3s ease;
+}
+
+.card-link:hover i {
+    transform: translateX(3px);
+}
+
+.card-stain {
+    position: absolute;
+    bottom: -50px;
+    right: -50px;
+    width: 100px;
+    height: 100px;
+    background-color: rgba(139, 0, 0, 0.05);
+    border-radius: 50%;
+    filter: blur(20px);
+    z-index: -1;
+}
+
+/* Пагинация */
+.archive-pagination {
+    margin-top: 50px;
+}
+
+.pagination {
+    justify-content: center;
+}
+
+.page-item .page-link {
+    background-color: rgba(20, 20, 20, 0.8);
+    border: 1px solid rgba(139, 0, 0, 0.3);
+    color: var(--parchment);
+    font-family: 'IM Fell English SC', serif;
+    transition: all 0.3s ease;
+}
+
+.page-item .page-link:hover {
+    background-color: rgba(139, 0, 0, 0.3);
+    color: var(--gold);
+    border-color: var(--blood);
+}
+
+.page-item.active .page-link {
+    background-color: var(--blood);
+    border-color: var(--blood);
+    color: white;
+}
+
+.page-item.disabled .page-link {
+    background-color: rgba(20, 20, 20, 0.5);
+    color: var(--parchment-dark);
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .archives-title {
+        font-size: 2.2rem;
+    }
+    
+    .filters-row {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .sort-box {
+        justify-content: flex-start;
+    }
+    
+    .category-tabs {
+        overflow-x: auto;
+        padding-bottom: 10px;
+        flex-wrap: nowrap;
+    }
+}
