@@ -1,0 +1,1066 @@
+/* Основные стили для страницы галереи */
+.gallery-main {
+    padding: 60px 0;
+    position: relative;
+    z-index: 1;
+}
+
+.gallery-title {
+    font-family: 'IM Fell English SC', serif;
+    font-size: 2.8rem;
+    color: var(--gold);
+    margin-bottom: 10px;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.gallery-title .title-icon {
+    margin-right: 15px;
+    font-size: 2rem;
+    color: var(--blood);
+}
+
+.gallery-subtitle {
+    font-size: 1.2rem;
+    color: var(--parchment-dark);
+    margin-bottom: 40px;
+    font-style: italic;
+}
+
+/* Секция конкурса */
+.weekly-contest {
+    background-color: rgba(10, 10, 10, 0.7);
+    border: 1px solid rgba(139, 0, 0, 0.5);
+    padding: 30px;
+    border-radius: 5px;
+    margin-bottom: 50px;
+    position: relative;
+    overflow: hidden;
+}
+
+.weekly-contest::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('img/noise.png');
+    opacity: 0.03;
+    pointer-events: none;
+}
+
+.contest-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+}
+
+.contest-title {
+    font-family: 'IM Fell English SC', serif;
+    font-size: 1.8rem;
+    color: var(--gold);
+    margin: 0;
+    display: flex;
+    align-items: center;
+}
+
+.contest-title i {
+    margin-right: 10px;
+    color: var(--gold-dark);
+}
+
+.contest-badge {
+    margin-left: 15px;
+    padding: 3px 10px;
+    background-color: var(--blood);
+    color: white;
+    font-size: 0.9rem;
+    border-radius: 3px;
+    animation: pulse 2s infinite;
+}
+
+.contest-timer {
+    font-family: 'IM Fell English SC', serif;
+    color: var(--parchment-dark);
+    font-size: 1.1rem;
+}
+
+.contest-timer i {
+    margin-right: 5px;
+    color: var(--gold-dark);
+}
+
+/* Карточки работ */
+.contest-artwork, .artwork-card {
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.artwork-image-container {
+    position: relative;
+    overflow: hidden;
+    border-radius: 3px;
+}
+
+.artwork-image {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.artwork-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px;
+    background: linear-gradient(to top, rgba(10, 10, 10, 0.9), transparent);
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+}
+
+.contest-artwork:hover .artwork-overlay,
+.artwork-card:hover .artwork-overlay {
+    transform: translateY(0);
+}
+
+.artwork-info h3 {
+    font-family: 'IM Fell English SC', serif;
+    font-size: 1.3rem;
+    color: var(--gold);
+    margin-bottom: 5px;
+}
+
+.artwork-info p {
+    color: var(--parchment);
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+}
+
+.artwork-stats {
+    display: flex;
+    gap: 15px;
+    font-size: 0.85rem;
+    color: var(--parchment-dark);
+}
+
+.artwork-stats span {
+    display: flex;
+    align-items: center;
+}
+
+.artwork-stats i {
+    margin-right: 5px;
+}
+
+.artwork-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.vote-btn, .comment-btn, .expand-btn, .view-btn {
+    padding: 5px 15px;
+    border: none;
+    border-radius: 3px;
+    font-family: 'IM Fell English SC', serif;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.vote-btn {
+    background-color: var(--blood);
+    color: white;
+}
+
+.vote-btn:hover {
+    background-color: var(--blood-dark);
+}
+
+.comment-btn, .expand-btn, .view-btn {
+    background-color: rgba(20, 20, 20, 0.8);
+    color: var(--parchment);
+    border: 1px solid rgba(139, 0, 0, 0.3);
+}
+
+.comment-btn:hover, .expand-btn:hover, .view-btn:hover {
+    background-color: rgba(139, 0, 0, 0.3);
+    color: var(--gold);
+    border-color: var(--blood);
+}
+
+.artwork-glitch {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: inherit;
+    opacity: 0;
+    mix-blend-mode: screen;
+}
+
+.contest-artwork:hover .artwork-glitch,
+.artwork-card:hover .artwork-glitch {
+    opacity: 0.2;
+    animation: glitch-effect 0.5s infinite;
+}
+
+/* Кнопка загрузки работы */
+.submit-btn {
+    padding: 10px 25px;
+    background: linear-gradient(to right, var(--blood), var(--blood-dark));
+    color: white;
+    border: none;
+    border-radius: 3px;
+    font-family: 'IM Fell English SC', serif;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.submit-btn:hover {
+    background: linear-gradient(to right, var(--blood-dark), var(--blood));
+    box-shadow: 0 0 15px rgba(139, 0, 0, 0.5);
+}
+
+/* Секция всех работ */
+.all-artworks {
+    margin-top: 50px;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+}
+
+.section-title {
+    font-family: 'IM Fell English SC', serif;
+    font-size: 1.8rem;
+    color: var(--gold);
+    margin: 0;
+    display: flex;
+    align-items: center;
+}
+
+.section-title i {
+    margin-right: 10px;
+    color: var(--gold-dark);
+}
+
+.sort-box {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.sort-box label {
+    color: var(--parchment-dark);
+    font-family: 'IM Fell English SC', serif;
+    font-size: 0.9rem;
+}
+
+.sort-select {
+    background-color: rgba(20, 20, 20, 0.8);
+    border: 1px solid rgba(139, 0, 0, 0.3);
+    color: var(--parchment);
+    padding: 5px 10px;
+    border-radius: 3px;
+    font-family: 'Cormorant Garamond', serif;
+    cursor: pointer;
+}
+
+.sort-select:focus {
+    outline: none;
+    border-color: var(--blood);
+}
+
+/* Пагинация */
+.gallery-pagination {
+    margin-top: 50px;
+}
+
+.pagination {
+    justify-content: center;
+}
+
+.page-item .page-link {
+    background-color: rgba(20, 20, 20, 0.8);
+    border: 1px solid rgba(139, 0, 0, 0.3);
+    color: var(--parchment);
+    font-family: 'IM Fell English SC', serif;
+    transition: all 0.3s ease;
+}
+
+.page-item .page-link:hover {
+    background-color: rgba(139, 0, 0, 0.3);
+    color: var(--gold);
+    border-color: var(--blood);
+}
+
+.page-item.active .page-link {
+    background-color: var(--blood);
+    border-color: var(--blood);
+    color: white;
+}
+
+.page-item.disabled .page-link {
+    background-color: rgba(20, 20, 20, 0.5);
+    color: var(--parchment-dark);
+}
+
+/* Модальные окна */
+.modal-content {
+    background-color: var(--dark);
+    border: 1px solid rgba(139, 0, 0, 0.5);
+    color: var(--parchment);
+}
+
+.modal-header {
+    border-bottom: 1px solid rgba(139, 0, 0, 0.3);
+}
+
+.modal-title {
+    font-family: 'IM Fell English SC', serif;
+    color: var(--gold);
+}
+
+.modal-title .author {
+    color: var(--parchment-dark);
+    font-size: 0.9rem;
+    margin-left: 10px;
+}
+
+.btn-close {
+    filter: invert(1) sepia(1) hue-rotate(300deg) saturate(5);
+}
+
+.main-artwork {
+    width: 100%;
+    border-radius: 3px;
+    margin-bottom: 15px;
+}
+
+.artwork-tools {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.tool-btn {
+    background-color: rgba(20, 20, 20, 0.8);
+    border: 1px solid rgba(139, 0, 0, 0.3);
+    color: var(--parchment);
+    padding: 5px 15px;
+    border-radius: 3px;
+    font-family: 'IM Fell English SC', serif;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.tool-btn:hover {
+    background-color: rgba(139, 0, 0, 0.3);
+    color: var(--gold);
+}
+
+.tool-btn i {
+    margin-right: 5px;
+}
+
+.comment-form {
+    margin-bottom: 20px;
+}
+
+.comment-input {
+    width: 100%;
+    padding: 10px;
+    background-color: rgba(20, 20, 20, 0.8);
+    border: 1px solid rgba(139, 0, 0, 0.3);
+    color: var(--parchment);
+    border-radius: 3px;
+    resize: none;
+    margin-bottom: 10px;
+    font-family: 'Cormorant Garamond', serif;
+}
+
+.comment-input:focus {
+    outline: none;
+    border-color: var(--blood);
+}
+
+.comment-submit {
+    padding: 5px 15px;
+    background-color: var(--blood);
+    color: white;
+    border: none;
+    border-radius: 3px;
+    font-family: 'IM Fell English SC', serif;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.comment-submit:hover {
+    background-color: var(--blood-dark);
+}
+
+.comments-list {
+    max-height: 400px;
+    overflow-y: auto;
+    padding-right: 10px;
+}
+
+.comment {
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px dashed rgba(139, 0, 0, 0.3);
+}
+
+.comment-author {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+    flex-wrap: wrap;
+}
+
+.comment-avatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-right: 10px;
+    object-fit: cover;
+    border: 1px solid rgba(139, 0, 0, 0.3);
+}
+
+.comment-username {
+    font-family: 'IM Fell English SC', serif;
+    color: var(--gold);
+    font-size: 0.9rem;
+    margin-right: 10px;
+}
+
+.comment-date {
+    font-size: 0.8rem;
+    color: var(--parchment-dark);
+}
+
+.comment-text {
+    margin-bottom: 10px;
+    font-size: 0.95rem;
+}
+
+.comment-actions {
+    display: flex;
+    gap: 15px;
+}
+
+.comment-like, .comment-reply {
+    background: none;
+    border: none;
+    color: var(--parchment-dark);
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    padding: 0;
+}
+
+.comment-like:hover, .comment-reply:hover {
+    color: var(--gold);
+}
+
+.comment-like i {
+    margin-right: 3px;
+}
+
+/* Форма загрузки работы */
+.submit-form .form-control {
+    background-color: rgba(20, 20, 20, 0.8);
+    border: 1px solid rgba(139, 0, 0, 0.3);
+    color: var(--parchment);
+}
+
+.submit-form .form-control:focus {
+    background-color: rgba(30, 30, 30, 0.8);
+    border-color: var(--blood);
+    color: var(--parchment);
+    box-shadow: 0 0 0 0.25rem rgba(139, 0, 0, 0.25);
+}
+
+.submit-form .form-text {
+    color: var(--parchment-dark);
+}
+
+.form-check-input {
+    background-color: rgba(20, 20, 20, 0.8);
+    border: 1px solid rgba(139, 0, 0, 0.5);
+}
+
+.form-check-input:checked {
+    background-color: var(--blood);
+    border-color: var(--blood);
+}
+
+.form-check-label {
+    color: var(--parchment);
+}
+
+.submit-actions {
+    margin-top: 20px;
+    text-align: center;
+}
+
+/* Анимации */
+@keyframes pulse {
+    0% { opacity: 0.7; }
+    50% { opacity: 1; }
+    100% { opacity: 0.7; }
+}
+
+@keyframes glitch-effect {
+    0% { transform: translate(0); clip-path: inset(0 0 0 0); }
+    20% { transform: translate(-3px, 3px); clip-path: inset(10% 0 30% 0); }
+    40% { transform: translate(-3px, -3px); clip-path: inset(30% 0 10% 0); }
+    60% { transform: translate(3px, 3px); clip-path: inset(10% 0 30% 0); }
+    80% { transform: translate(3px, -3px); clip-path: inset(30% 0 10% 0); }
+    100% { transform: translate(0); clip-path: inset(0 0 0 0); }
+}
+
+/* Стили для конкурсов */
+.contest-header {
+    background-color: rgba(20, 20, 30, 0.8);
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    position: relative;
+    border: 1px solid #3a3a4a;
+}
+
+.contest-title {
+    color: #e0e0ff;
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.contest-title i {
+    margin-right: 15px;
+    color: #ffcc00;
+}
+
+.contest-badge {
+    background-color: #ff3366;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    margin-left: 15px;
+    display: inline-block;
+    animation: pulse 2s infinite;
+}
+
+.contest-timer {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 8px 15px;
+    border-radius: 20px;
+    color: #ffcc00;
+    font-weight: bold;
+}
+
+.contest-description {
+    color: #b0b0c0;
+    margin-top: 15px;
+    line-height: 1.5;
+}
+
+.contest-artwork.winner {
+    position: relative;
+    border: 3px solid #ffcc00;
+    box-shadow: 0 0 20px rgba(255, 204, 0, 0.5);
+}
+
+.contest-artwork.winner .contest-ribbon {
+    background-color: #ffcc00;
+    color: #333;
+}
+
+.contest-message {
+    color: #b0b0c0;
+    font-size: 1.2rem;
+    padding: 20px;
+    background-color: rgba(20, 20, 30, 0.6);
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+/* Анимация для бейджа конкурса */
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+.vote-btn {
+    transition: all 0.3s ease;
+}
+
+.vote-btn.voted {
+    background-color: #ff4757;
+    color: white;
+}
+
+.vote-btn .fa-heart {
+    color: inherit;
+}
+
+.vote-count {
+    margin-left: 5px;
+    font-weight: bold;
+}
+/* Добавьте в gallery.css */
+.vote-btn {
+    background: none;
+    border: 1px solid #ffd700;
+    color: #ffd700;
+    padding: 5px 10px;
+    border-radius: 20px;
+    transition: all 0.3s;
+}
+
+.vote-btn.voted {
+    background: linear-gradient(135deg, #ffd700, #ff9900);
+    color: #000;
+    border-color: transparent;
+}
+
+.vote-btn .fa-medal {
+    margin-right: 5px;
+}
+
+.vote-count {
+    font-weight: bold;
+    margin-left: 3px;
+}
+.contest-header {
+    margin-bottom: 30px;
+}
+
+.contest-description-box {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #444;
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-left: 4px solid #ccc;
+    border-radius: 6px;
+}
+.contest-description-box {
+    font-size: 1rem;
+    line-height: 1.6;
+    color:#f9f9f9;
+    background-color: rgba(20, 20, 30, 0.6);
+    padding: 20px;
+    border-left: 4px solid #ffd700;
+    border-radius: 6px;
+}
+
+.like-btn {
+    /* Ваши текущие стили */
+    padding: 5px 15px;
+    border: none;
+    border-radius: 3px;
+    font-family: 'IM Fell English SC', serif;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background-color: rgba(20, 20, 20, 0.8);
+    color: var(--parchment);
+    border: 1px solid rgba(139, 0, 0, 0.3);
+    
+    /* Критически важные добавления */
+    position: relative;
+    z-index: 100; /* Убедимся, что кнопка поверх других элементов */
+    pointer-events: auto; /* Разрешаем клики */
+}
+
+.like-btn:hover {
+    background-color: rgba(139, 0, 0, 0.3);
+    color: var(--gold);
+    border-color: var(--blood);
+}
+
+/* Для родительских элементов, которые могут перехватывать клики */
+.artwork-overlay, .artwork-image-container {
+    pointer-events: none; /* Отключаем обработку кликов */
+}
+
+/* Но включаем для дочерних элементов, которые должны быть кликабельны */
+.artwork-overlay .like-btn,
+.artwork-overlay .vote-btn,
+.artwork-overlay .expand-btn {
+    pointer-events: auto;
+}
+/* Обновляем CSS */
+.artwork-overlay {
+    pointer-events: none; /* Отключаем события по умолчанию */
+}
+
+/* Включаем события для конкретных элементов */
+.artwork-overlay .view-btn,
+.artwork-overlay .expand-btn,
+.artwork-overlay [data-bs-toggle="modal"] {
+    pointer-events: auto !important;
+}
+
+/* Для конкурсных работ */
+.contest-artwork .artwork-actions button {
+    pointer-events: auto !important;
+}
+/* Стили для модального окна */
+#modalArtworkImage.loading {
+    background: url('path/to/loading.gif') no-repeat center center;
+    min-height: 300px;
+}
+
+.image-error {
+    padding: 20px;
+    text-align: center;
+    color: #ff6b6b;
+    background: rgba(0,0,0,0.7);
+    border-radius: 5px;
+    margin: 20px;
+}
+
+/* Убедитесь, что изображение не скрыто */
+.main-artwork {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Анимация для срочного таймера */
+@keyframes blink {
+    0% { opacity: 1; }
+    50% { opacity: 0.5; }
+    100% { opacity: 1; }
+}
+
+.blink {
+    animation: blink 1s linear infinite;
+}
+
+.text-danger {
+    color: #dc3545 !important;
+    font-weight: bold;
+}
+.vote-btn {
+    position: relative;
+    z-index: 100;
+    background: rgba(20, 20, 20, 0.8);
+    color: var(--gold);
+    border: 1px solid rgba(255, 215, 0, 0.3);
+}
+
+.vote-btn.voted {
+    color: var(--gold);
+    border-color: var(--gold);
+    background: rgba(255, 215, 0, 0.1);
+}
+
+.vote-btn:hover {
+    background: rgba(255, 215, 0, 0.2);
+}
+
+/* Дополнительные адаптации для очень маленьких экранов */
+
+.artwork-image {
+    transition: transform 0.3s ease;
+}
+
+
+.like-btn, .vote-btn, .expand-btn {
+    min-width: 44px;
+    min-height: 44px;
+    padding: 10px;
+    touch-action: manipulation;
+}
+/* Мобильный хэдер (только для экранов ≤ 992px) */
+@media (max-width: 992px) {
+  .header {
+    position: relative;
+    padding: 10px 0;
+  }
+  
+  .header .container {
+    padding: 0 15px;
+  }
+  
+  .logo {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .logo-img {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .logo-text {
+    font-size: 1rem;
+    margin-left: 10px;
+  }
+  
+  /* ==================== */
+/* МОБИЛЬНОЕ МЕНЮ - CSS */
+/* ==================== */
+
+/* Базовые стили для контейнера меню (всегда скрыт по умолчанию) */
+#mobileMenuContainer {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 80%;
+    max-width: 300px;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.95);
+    z-index: 1000;
+    padding: 70px 20px 20px;
+    /* Убрали transition из здесь */
+}
+/* Состояние открытого меню */
+#mobileMenuContainer.active {
+    transform: translateX(0);
+    opacity: 1;
+    display: block;
+}
+
+/* Стили для ссылок в меню */
+#mobileMenuContainer .nav-link {
+    display: block;
+    padding: 15px;
+    margin: 8px 0;
+    color: #fff;
+    font-size: 1.1rem;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.2s ease;
+}
+
+#mobileMenuContainer .nav-link:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Стили для кнопки авторизации */
+#mobileMenuContainer .auth-btn {
+    display: block;
+    margin-top: 20px;
+    padding: 12px;
+    text-align: center;
+    background: #3a3a3a;
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.2s ease;
+}
+
+#mobileMenuContainer .auth-btn:hover {
+    background-color: #4a4a4a;
+}
+
+/* Стили для бургер-кнопки */
+.burger-menu {
+    display: none; /* По умолчанию скрыта */
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 20px;
+    cursor: pointer;
+    z-index: 1001;
+    position: relative;
+}
+
+.burger-line {
+    width: 100%;
+    height: 2px;
+    background: #fff;
+    transition: all 0.3s ease;
+}
+
+/* Анимация бургера при открытии */
+.burger-menu.active .burger-line:nth-child(1) {
+    transform: translateY(9px) rotate(45deg);
+}
+
+.burger-menu.active .burger-line:nth-child(2) {
+    opacity: 0;
+}
+
+.burger-menu.active .burger-line:nth-child(3) {
+    transform: translateY(-9px) rotate(-45deg);
+}
+
+/* ===================== */
+/* МЕДИА-ЗАПРОСЫ ДЛЯ АДАПТИВА */
+/* ===================== */
+
+@media (max-width: 992px) {
+    /* Скрываем десктопное меню */
+    .nav-menu {
+        display: none !important;
+    }
+    
+    /* Показываем бургер */
+    .burger-menu {
+        display: flex;
+    }
+    
+    /* Фикс для body при открытом меню */
+    body.menu-open {
+        overflow: hidden;
+        position: fixed;
+        width: 100%;
+    }
+}
+
+@media (max-width: 576px) {
+    /* Уменьшаем ширину меню на очень маленьких экранах */
+    #mobileMenuContainer {
+        width: 85%;
+        padding: 60px 15px 15px;
+    }
+    
+    /* Уменьшаем отступы для ссылок */
+    #mobileMenuContainer .nav-link {
+        padding: 12px;
+        font-size: 1rem;
+        margin: 6px 0;
+    }
+    
+    /* Уменьшаем кнопку авторизации */
+    #mobileMenuContainer .auth-btn {
+        padding: 10px;
+        font-size: 0.9rem;
+        margin-top: 15px;
+    }
+}
+
+/* Гарантированное скрытие на десктопе */
+@media (min-width: 993px) {
+    #mobileMenuContainer,
+    .burger-menu {
+        display: none !important;
+    }
+    
+    .nav-menu {
+        display: block !important;
+    }
+}
+}
+/* Добавьте в конец файла gallery.css */
+.contest-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+.contest-title-container {
+    flex: 1;
+    min-width: 200px;
+}
+
+.contest-timer-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.contest-timer-desktop {
+    text-align: right;
+}
+
+.contest-timer-mobile {
+    display: none;
+    margin-top: 10px;
+    font-size: 0.9rem;
+    color: var(--gold);
+    background: rgba(0,0,0,0.3);
+    padding: 8px 12px;
+    border-radius: 20px;
+    text-align: center;
+    width: 100%;
+}
+
+/* Адаптация для мобильных */
+@media (max-width: 768px) {
+    .contest-header {
+        flex-direction: column;
+    }
+    
+    .contest-title-container {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+    
+    .contest-timer-container {
+        width: 100%;
+        align-items: flex-start;
+    }
+    
+    .contest-timer-desktop {
+        display: none !important;
+    }
+    
+    .contest-timer-mobile {
+        display: block;
+    }
+    
+    .contest-title {
+        font-size: 1.5rem;
+    }
+    
+    .contest-badge {
+        font-size: 0.8rem;
+        margin-left: 10px;
+    }
+}
+
+/* Для очень маленьких экранов */
+@media (max-width: 480px) {
+    .contest-title {
+        font-size: 1.3rem;
+    }
+    
+    .contest-timer-mobile {
+        font-size: 0.8rem;
+        padding: 6px 10px;
+    }
+}

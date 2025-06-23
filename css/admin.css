@@ -1,0 +1,1428 @@
+/* Основные переменные */
+:root {
+    --admin-dark: #0a0a0a;
+    --admin-darker: #050505;
+    --admin-darkest: #010101;
+    --admin-blood: #8b0000;
+    --admin-blood-dark: #5a0000;
+    --admin-gold: #ffd700;
+    --admin-gold-dark: #b8860b;
+    --admin-parchment: #b8a9a3;
+    --admin-parchment-dark: #8a7e79;
+    --admin-fog: rgba(200, 200, 200, 0.15);
+    --admin-sidebar-width: 280px;
+    --admin-sidebar-collapsed: 80px;
+}
+
+/* Базовые стили */
+.admin-body {
+    font-family: 'Cormorant Garamond', serif;
+    background-color: var(--admin-dark);
+    color: var(--admin-parchment);
+    line-height: 1.6;
+    overflow-x: hidden;
+    position: relative;
+    min-height: 100vh;
+}
+
+/* Туманный фон */
+.admin-fog-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.admin-fog-layer {
+    position: absolute;
+    width: 200%;
+    height: 100%;
+    background: url('../img/fog-texture.png') repeat-x;
+    background-size: cover;
+    animation: fog-move 60s linear infinite;
+    opacity: 0.3;
+}
+
+.admin-fog-layer-1 {
+    animation-duration: 80s;
+    filter: blur(3px);
+}
+
+.admin-fog-layer-2 {
+    animation-duration: 120s;
+    animation-delay: -30s;
+    filter: blur(5px);
+    opacity: 0.2;
+}
+
+/* Силуэты */
+.admin-silhouettes {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none;
+}
+
+.admin-silhouette {
+    position: absolute;
+    background: url('../img/silhouette.png') no-repeat;
+    background-size: contain;
+    width: 200px;
+    height: 400px;
+    opacity: 0.05;
+}
+
+.admin-silhouette-1 {
+    top: 20%;
+    left: 5%;
+}
+
+.admin-silhouette-2 {
+    top: 50%;
+    right: 10%;
+    transform: scaleX(-1);
+}
+
+/* Основной контейнер */
+.admin-container {
+    display: flex;
+    min-height: 100vh;
+    margin-left: var(--admin-sidebar-width);
+    transition: margin-left 0.3s ease;
+}
+
+.admin-sidebar-collapsed .admin-container {
+    margin-left: var(--admin-sidebar-collapsed);
+}
+
+/* Боковая панель */
+.admin-sidebar {
+    width: var(--admin-sidebar-width);
+    background: rgba(10, 10, 10, 0.95);
+    border-right: 1px solid var(--admin-blood);
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    transition: width 0.3s ease;
+    backdrop-filter: blur(5px);
+}
+
+.admin-sidebar-collapsed .admin-sidebar {
+    width: var(--admin-sidebar-collapsed);
+}
+
+.admin-logo {
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid rgba(139, 0, 0, 0.3);
+}
+
+.admin-logo-img {
+    height: 40px;
+    margin-right: 15px;
+    filter: drop-shadow(0 0 5px rgba(255, 215, 0, 0.3));
+}
+
+.admin-logo-text {
+    font-family: 'IM Fell English SC', serif;
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: var(--admin-gold);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.admin-sidebar-collapsed .admin-logo-text {
+    display: none;
+}
+
+.admin-nav {
+    flex: 1;
+    padding: 20px 0;
+    overflow-y: auto;
+}
+
+.admin-nav-section {
+    margin-bottom: 30px;
+}
+
+.admin-nav-title {
+    font-family: 'IM Fell English SC', serif;
+    color: var(--admin-gold);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 0 20px 10px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid rgba(139, 0, 0, 0.3);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.admin-sidebar-collapsed .admin-nav-title {
+    display: none;
+}
+
+.admin-nav-link {
+    display: flex;
+    align-items: center;
+    padding: 12px 20px;
+    color: var(--admin-parchment);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    position: relative;
+    white-space: nowrap;
+}
+
+.admin-nav-link i {
+    margin-right: 15px;
+    font-size: 1.1rem;
+    color: var(--admin-gold-dark);
+    min-width: 20px;
+}
+
+.admin-nav-link:hover {
+    background: rgba(139, 0, 0, 0.1);
+    color: var(--admin-gold);
+}
+
+.admin-nav-link.active {
+    background: rgba(139, 0, 0, 0.2);
+    color: var(--admin-gold);
+    border-left: 3px solid var(--admin-blood);
+}
+
+.admin-nav-link.active::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 3px;
+    height: 100%;
+    background: var(--admin-gold);
+}
+
+.admin-nav-badge {
+    margin-left: auto;
+    background: var(--admin-blood);
+    color: white;
+    font-size: 0.7rem;
+    padding: 2px 6px;
+    border-radius: 10px;
+}
+
+.admin-sidebar-collapsed .admin-nav-link span:not(.admin-nav-badge) {
+    display: none;
+}
+
+.admin-sidebar-collapsed .admin-nav-link i {
+    margin-right: 0;
+    font-size: 1.3rem;
+}
+
+.admin-sidebar-collapsed .admin-nav-link {
+    justify-content: center;
+    padding: 15px 0;
+}
+
+.admin-sidebar-footer {
+    padding: 20px;
+    border-top: 1px solid rgba(139, 0, 0, 0.3);
+}
+
+.admin-user {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.admin-user-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+    object-fit: cover;
+    border: 1px solid var(--admin-gold-dark);
+}
+
+.admin-user-info {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.admin-user-name {
+    display: block;
+    font-weight: bold;
+    color: var(--admin-gold);
+}
+
+.admin-user-role {
+    display: block;
+    font-size: 0.8rem;
+    color: var(--admin-parchment-dark);
+}
+
+.admin-sidebar-collapsed .admin-user-info {
+    display: none;
+}
+
+.admin-logout-btn {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 10px;
+    background: rgba(139, 0, 0, 0.3);
+    color: var(--admin-parchment);
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.admin-logout-btn i {
+    margin-right: 10px;
+}
+
+.admin-logout-btn:hover {
+    background: rgba(139, 0, 0, 0.5);
+    color: white;
+}
+
+.admin-sidebar-collapsed .admin-logout-btn span {
+    display: none;
+}
+
+.admin-sidebar-collapsed .admin-logout-btn {
+    justify-content: center;
+    padding: 10px 0;
+}
+
+.admin-sidebar-collapsed .admin-logout-btn i {
+    margin-right: 0;
+}
+
+/* Основное содержимое */
+.admin-main {
+    flex: 1;
+    padding: 20px;
+    background: rgba(5, 5, 5, 0.7);
+}
+
+.admin-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(139, 0, 0, 0.3);
+}
+
+.admin-header-left {
+    display: flex;
+    align-items: center;
+}
+
+.admin-menu-toggle {
+    background: none;
+    border: none;
+    color: var(--admin-gold);
+    font-size: 1.3rem;
+    margin-right: 20px;
+    cursor: pointer;
+    display: none;
+}
+
+.admin-page-title {
+    font-family: 'IM Fell English SC', serif;
+    color: var(--admin-gold);
+    font-size: 1.8rem;
+    margin: 0;
+}
+
+.admin-header-right {
+    display: flex;
+    align-items: center;
+}
+
+.admin-search {
+    position: relative;
+    margin-right: 20px;
+}
+
+.admin-search i {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--admin-parchment-dark);
+}
+
+.admin-search input {
+    padding: 8px 15px 8px 35px;
+    background: rgba(10, 10, 10, 0.8);
+    border: 1px solid rgba(139, 0, 0, 0.3);
+    color: var(--admin-parchment);
+    border-radius: 3px;
+    width: 200px;
+    transition: all 0.3s ease;
+}
+
+.admin-search input:focus {
+    outline: none;
+    border-color: var(--admin-blood);
+    width: 250px;
+}
+
+.admin-notification-btn {
+    background: none;
+    border: none;
+    color: var(--admin-parchment);
+    font-size: 1.2rem;
+    position: relative;
+    cursor: pointer;
+}
+
+.admin-notification-badge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background: var(--admin-blood);
+    color: white;
+    font-size: 0.7rem;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Контент */
+.admin-content {
+    background: rgba(10, 10, 10, 0.5);
+    border: 1px solid rgba(139, 0, 0, 0.2);
+    border-radius: 3px;
+    padding: 20px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+}
+
+.admin-quick-actions {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.admin-quick-btn {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 3px;
+    font-family: 'IM Fell English SC', serif;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+}
+
+.admin-quick-btn i {
+    margin-right: 8px;
+}
+
+.admin-primary-btn {
+    background: linear-gradient(to right, var(--admin-blood), var(--admin-blood-dark));
+    color: white;
+}
+
+.admin-primary-btn:hover {
+    background: linear-gradient(to right, var(--admin-blood-dark), var(--admin-blood));
+    box-shadow: 0 0 10px rgba(139, 0, 0, 0.5);
+}
+
+.admin-secondary-btn {
+    background: rgba(10, 10, 10, 0.8);
+    border: 1px solid var(--admin-gold-dark);
+    color: var(--admin-gold);
+}
+
+.admin-secondary-btn:hover {
+    background: rgba(255, 215, 0, 0.1);
+    border-color: var(--admin-gold);
+}
+
+.admin-danger-btn {
+    background: rgba(10, 10, 10, 0.8);
+    border: 1px solid var(--admin-blood-dark);
+    color: var(--admin-parchment);
+}
+
+.admin-danger-btn:hover {
+    background: rgba(139, 0, 0, 0.2);
+    color: white;
+}
+
+/* Фильтры */
+.admin-filters {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.admin-filter-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.admin-filter-group label {
+    font-size: 0.9rem;
+    margin-bottom: 5px;
+    color: var(--admin-parchment-dark);
+}
+
+.admin-filter-select, .admin-filter-date {
+    padding: 8px 12px;
+    background: rgba(10, 10, 10, 0.8);
+    border: 1px solid rgba(139, 0, 0, 0.3);
+    color: var(--admin-parchment);
+    border-radius: 3px;
+    min-width: 180px;
+}
+
+.admin-filter-select:focus, .admin-filter-date:focus {
+    outline: none;
+    border-color: var(--admin-blood);
+}
+
+/* Таблица */
+.admin-table-container {
+    overflow-x: auto;
+}
+
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.admin-table th, .admin-table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid rgba(139, 0, 0, 0.2);
+}
+
+.admin-table th {
+    font-family: 'IM Fell English SC', serif;
+    color: var(--admin-gold);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    background: rgba(10, 10, 10, 0.8);
+}
+
+.admin-table tr:hover td {
+    background: rgba(139, 0, 0, 0.05);
+}
+
+.admin-table-checkbox {
+    accent-color: var(--admin-blood);
+}
+
+.admin-article-preview {
+    display: flex;
+    align-items: center;
+}
+
+.admin-article-thumb {
+    width: 50px;
+    height: 30px;
+    object-fit: cover;
+    margin-right: 10px;
+    border: 1px solid rgba(139, 0, 0, 0.3);
+}
+
+.admin-badge {
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 3px;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+.admin-software-badge {
+    background: rgba(0, 100, 139, 0.2);
+    color: #00b4d8;
+    border: 1px solid #00b4d8;
+}
+
+.admin-brushes-badge {
+    background: rgba(139, 69, 0, 0.2);
+    color: #ff9e00;
+    border: 1px solid #ff9e00;
+}
+
+.admin-tutorials-badge {
+    background: rgba(0, 139, 69, 0.2);
+    color: #00e676;
+    border: 1px solid #00e676;
+}
+
+.admin-theory-badge {
+    background: rgba(69, 0, 139, 0.2);
+    color: #9c27b0;
+    border: 1px solid #9c27b0;
+}
+
+.admin-published-badge {
+    background: rgba(0, 139, 0, 0.2);
+    color: #00e676;
+    border: 1px solid #00e676;
+}
+
+.admin-draft-badge {
+    background: rgba(139, 139, 0, 0.2);
+    color: #ffeb3b;
+    border: 1px solid #ffeb3b;
+}
+
+.admin-archived-badge {
+    background: rgba(139, 0, 0, 0.2);
+    color: #f44336;
+    border: 1px solid #f44336;
+}
+
+.admin-actions {
+    display: flex;
+    gap: 5px;
+}
+
+.admin-action-btn {
+    width: 30px;
+    height: 30px;
+    border: none;
+    border-radius: 3px;
+    background: rgba(10, 10, 10, 0.8);
+    color: var(--admin-parchment);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.admin-action-btn:hover {
+    color: white;
+}
+
+.admin-edit-btn {
+    border: 1px solid var(--admin-gold-dark);
+}
+
+.admin-edit-btn:hover {
+    background: var(--admin-gold-dark);
+}
+
+.admin-delete-btn {
+    border: 1px solid var(--admin-blood-dark);
+}
+
+.admin-delete-btn:hover {
+    background: var(--admin-blood);
+}
+
+.admin-eye-btn {
+    border: 1px solid #00b4d8;
+}
+
+.admin-eye-btn:hover {
+    background: #00b4d8;
+}
+
+/* Пагинация */
+.admin-pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+    gap: 5px;
+}
+
+.admin-pagination-btn {
+    width: 35px;
+    height: 35px;
+    border: 1px solid rgba(139, 0, 0, 0.3);
+    background: rgba(10, 10, 10, 0.8);
+    color: var(--admin-parchment);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: 3px;
+}
+
+.admin-pagination-btn:hover:not(:disabled) {
+    border-color: var(--admin-blood);
+    color: var(--admin-gold);
+}
+
+.admin-pagination-btn.active {
+    background: var(--admin-blood);
+    color: white;
+    border-color: var(--admin-blood);
+}
+
+.admin-pagination-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Модальное окно */
+.admin-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 2000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+
+.admin-modal-content {
+    background: var(--admin-dark);
+    border: 1px solid var(--admin-blood);
+    width: 90%;
+    max-width: 800px;
+    max-height: 90vh;
+    overflow-y: auto;
+    border-radius: 3px;
+    box-shadow: 0 0 30px rgba(139, 0, 0, 0.5);
+}
+
+.admin-modal-header {
+    padding: 15px 20px;
+    border-bottom: 1px solid rgba(139, 0, 0, 0.3);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.admin-modal-header h3 {
+    font-family: 'IM Fell English SC', serif;
+    color: var(--admin-gold);
+    margin: 0;
+}
+
+.admin-modal-close {
+    background: none;
+    border: none;
+    color: var(--admin-parchment);
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.admin-modal-close:hover {
+    color: var(--admin-gold);
+}
+
+.admin-modal-body {
+    padding: 20px;
+}
+
+.admin-modal-footer {
+    padding: 15px 20px;
+    border-top: 1px solid rgba(139, 0, 0, 0.3);
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.admin-btn {
+    padding: 8px 15px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.admin-cancel-btn {
+    background: rgba(10, 10, 10, 0.8);
+    border: 1px solid var(--admin-parchment-dark);
+    color: var(--admin-parchment);
+}
+
+.admin-cancel-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.admin-save-btn {
+    background: var(--admin-blood);
+    color: white;
+}
+
+.admin-save-btn:hover {
+    background: var(--admin-blood-dark);
+}
+
+/* Адаптивность */
+@media (max-width: 1200px) {
+    .admin-container {
+        margin-left: var(--admin-sidebar-collapsed);
+    }
+    
+    .admin-sidebar {
+        width: var(--admin-sidebar-collapsed);
+    }
+    
+    .admin-sidebar-collapsed .admin-container {
+        margin-left: 0;
+    }
+    
+    .admin-sidebar-collapsed .admin-sidebar {
+        transform: translateX(-100%);
+    }
+    
+    .admin-menu-toggle {
+        display: block;
+    }
+}
+
+@media (max-width: 768px) {
+    .admin-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+    
+    .admin-header-right {
+        width: 100%;
+    }
+    
+    .admin-search input {
+        width: 100%;
+    }
+    
+    .admin-search input:focus {
+        width: 100%;
+    }
+    
+    .admin-quick-actions {
+        flex-direction: column;
+    }
+    
+    .admin-filters {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .admin-filter-select, .admin-filter-date {
+        min-width: 100%;
+    }
+}
+/* Форма редактирования статьи */
+.admin-article-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.admin-form-row {
+    display: flex;
+    gap: 20px;
+}
+
+.admin-form-group {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.admin-form-group label {
+    font-family: 'IM Fell English SC', serif;
+    color: var(--admin-gold);
+    font-size: 0.9rem;
+}
+
+.admin-form-group input[type="text"],
+.admin-form-group input[type="number"],
+.admin-form-group textarea,
+.admin-form-group select {
+    padding: 10px;
+    background: rgba(10, 10, 10, 0.8);
+    border: 1px solid rgba(139, 0, 0, 0.3);
+    color: var(--admin-parchment);
+    border-radius: 3px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem;
+}
+
+.admin-form-group input[type="file"] {
+    padding: 5px;
+}
+
+.admin-current-image {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.admin-current-image img {
+    max-width: 200px;
+    max-height: 150px;
+    border: 1px solid rgba(139, 0, 0, 0.3);
+}
+
+.admin-current-image span {
+    font-size: 0.8rem;
+    color: var(--admin-parchment-dark);
+}
+
+/* Галерея */
+.admin-gallery-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.admin-gallery-item {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    background: rgba(10, 10, 10, 0.5);
+    padding: 10px;
+    border: 1px solid rgba(139, 0, 0, 0.2);
+    border-radius: 3px;
+}
+
+.admin-gallery-preview {
+    position: relative;
+}
+
+.admin-gallery-preview img {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+    border: 1px solid rgba(139, 0, 0, 0.3);
+}
+
+.admin-gallery-remove {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    width: 25px;
+    height: 25px;
+    background: var(--admin-blood);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    opacity: 0.7;
+    transition: all 0.3s ease;
+}
+
+.admin-gallery-remove:hover {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+.admin-gallery-upload {
+    margin-top: 20px;
+}
+
+.admin-gallery-upload-preview {
+    display: inline-flex;
+    flex-direction: column;
+    margin-right: 15px;
+    margin-bottom: 15px;
+    max-width: 150px;
+}
+
+.admin-gallery-upload-preview img {
+    width: 150px;
+    height: 100px;
+    object-fit: cover;
+    border: 1px solid rgba(139, 0, 0, 0.3);
+}
+
+.admin-gallery-upload-preview span {
+    font-size: 0.7rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Кнопки формы */
+.admin-form-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.admin-btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 3px;
+    font-family: 'IM Fell English SC', serif;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+.admin-primary-btn {
+    background: var(--admin-blood);
+    color: white;
+}
+
+.admin-primary-btn:hover {
+    background: var(--admin-blood-dark);
+}
+
+.admin-cancel-btn {
+    background: rgba(10, 10, 10, 0.8);
+    border: 1px solid var(--admin-parchment-dark);
+    color: var(--admin-parchment);
+}
+
+.admin-cancel-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* Сообщения */
+.admin-message {
+    padding: 10px 15px;
+    background: rgba(0, 139, 0, 0.2);
+    border: 1px solid #00e676;
+    color: #00e676;
+    border-radius: 3px;
+    font-size: 0.9rem;
+}
+
+.admin-error {
+    padding: 10px 15px;
+    background: rgba(139, 0, 0, 0.2);
+    border: 1px solid #f44336;
+    color: #f44336;
+    border-radius: 3px;
+    font-size: 0.9rem;
+}
+
+/* CKEditor адаптация */
+.cke_top {
+    background: rgba(10, 10, 10, 0.8) !important;
+    border-bottom: 1px solid rgba(139, 0, 0, 0.3) !important;
+}
+
+.cke_toolgroup {
+    background: rgba(5, 5, 5, 0.8) !important;
+    border: 1px solid rgba(139, 0, 0, 0.3) !important;
+    box-shadow: none !important;
+}
+
+.cke_combo_text {
+    color: var(--admin-parchment) !important;
+}
+.moderation-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.moderation-item {
+    background: rgba(30, 30, 30, 0.7);
+    border: 1px solid #444;
+    padding: 15px;
+    border-radius: 5px;
+}
+
+.moderation-item img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+}
+/* Дашборд */
+.admin-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.admin-stat-card {
+    background: rgba(30, 30, 30, 0.7);
+    border: 1px solid #444;
+    border-radius: 5px;
+    padding: 20px;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.admin-stat-card:hover {
+    border-color: var(--blood);
+    box-shadow: 0 0 15px rgba(139, 0, 0, 0.3);
+}
+
+.stat-icon {
+    font-size: 2rem;
+    color: var(--gold);
+    margin-bottom: 15px;
+}
+
+.stat-info h3 {
+    font-size: 2rem;
+    margin: 0 0 5px;
+    color: var(--parchment);
+}
+
+.stat-link {
+    display: inline-block;
+    margin-top: 15px;
+    color: var(--gold);
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+.admin-welcome {
+    background: rgba(10, 10, 10, 0.7);
+    border-left: 3px solid var(--blood);
+    padding: 20px;
+    margin-top: 30px;
+}
+
+.admin-welcome h2 {
+    color: var(--gold);
+    margin-top: 0;
+}
+/* Дашборд */
+.dashboard-wrapper {
+    padding: 20px;
+}
+
+.admin-welcome-card {
+    background: rgba(30, 30, 30, 0.7);
+    border: 1px solid var(--blood);
+    border-radius: 5px;
+    padding: 20px;
+    margin-bottom: 30px;
+    box-shadow: 0 0 15px rgba(139, 0, 0, 0.3);
+}
+
+.admin-welcome-card h2 {
+    color: var(--gold);
+    margin-top: 0;
+    font-family: 'IM Fell English SC', serif;
+}
+
+.welcome-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.welcome-message {
+    flex: 1;
+}
+
+.notification-bubble {
+    display: inline-block;
+    background: var(--blood);
+    color: white;
+    padding: 5px 15px;
+    border-radius: 20px;
+    margin-top: 10px;
+}
+
+.welcome-avatar img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 2px solid var(--gold);
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.stat-card {
+    background: rgba(20, 20, 20, 0.8);
+    border-radius: 5px;
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.stat-card.article-stat {
+    border-left: 4px solid var(--gold);
+}
+
+.stat-card.moderation-stat {
+    border-left: 4px solid var(--blood);
+}
+
+.stat-card.gallery-stat {
+    border-left: 4px solid #6a5acd;
+}
+
+.stat-icon {
+    font-size: 2rem;
+    color: var(--parchment);
+    margin-bottom: 15px;
+}
+
+.stat-info h3 {
+    font-size: 2.5rem;
+    margin: 0 0 5px;
+    color: var(--gold);
+    font-family: 'IM Fell English SC', serif;
+}
+
+.stat-link {
+    display: inline-block;
+    margin-top: 10px;
+    color: var(--parchment);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+.stat-link:hover {
+    color: var(--gold);
+    text-decoration: underline;
+}
+
+.stat-details {
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px dashed rgba(139, 0, 0, 0.3);
+}
+
+.detail-item {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 0.9rem;
+    color: var(--parchment-dark);
+}
+
+.recent-activity {
+    background: rgba(10, 10, 10, 0.7);
+    border-radius: 5px;
+    padding: 20px;
+}
+
+.recent-activity h3 {
+    color: var(--gold);
+    margin-top: 0;
+    font-family: 'IM Fell English SC', serif;
+}
+
+.activity-list {
+    margin-top: 15px;
+}
+
+.activity-item {
+    padding: 10px;
+    border-bottom: 1px solid rgba(139, 0, 0, 0.2);
+}
+
+/* Модерация */
+.moderation-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.moderation-filters {
+    display: flex;
+    gap: 10px;
+}
+
+.filter-btn {
+    background: rgba(10, 10, 10, 0.7);
+    border: 1px solid var(--blood);
+    color: var(--parchment);
+    padding: 5px 15px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.filter-btn.active {
+    background: var(--blood);
+    color: white;
+}
+
+.artwork-type-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 2;
+}
+
+.contest-badge {
+    background: var(--gold-dark);
+    color: var(--darkest);
+    padding: 3px 10px;
+    border-radius: 3px;
+    font-size: 0.8rem;
+}
+
+.gallery-badge {
+    background: #6a5acd;
+    color: white;
+    padding: 3px 10px;
+    border-radius: 3px;
+    font-size: 0.8rem;
+}
+.admin-table img {
+    max-width: 100px;
+    max-height: 100px;
+    object-fit: cover;
+    border-radius: 4px;
+    border: 1px solid #444;
+}
+
+.badge {
+    padding: 5px 10px;
+    border-radius: 12px;
+    font-size: 12px;
+}
+
+.bg-warning {
+    background-color: #ffc107;
+    color: #000;
+}
+
+.bg-info {
+    background-color: #0dcaf0;
+    color: #000;
+}
+
+.bg-secondary {
+    background-color: #6c757d;
+}
+
+.bg-success {
+    background-color: #198754;
+}
+
+.bg-danger {
+    background-color: #dc3545;
+}
+
+/* Фикс для модального окна */
+#createContestModal .modal-footer {
+    display: flex !important;
+    justify-content: space-between;
+}
+
+#saveContestBtn {
+    min-width: 150px;
+    position: relative;
+    z-index: 1;
+}
+/* Глобальный фикс для всех кнопок действий */
+.admin-actions {
+    position: relative;
+    z-index: 100;
+}
+
+.admin-action-btn {
+    pointer-events: auto !important;
+    position: relative !important;
+    transform: none !important;
+    opacity: 1 !important;
+    z-index: 101 !important;
+}
+/* Стили для модального окна выбора победителя */
+.contest-artwork {
+    border: 1px solid #dee2e6;
+    border-radius: 0.25rem;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    transition: all 0.3s ease;
+}
+
+.contest-artwork.winner {
+    border: 2px solid #28a745;
+    background-color: rgba(40, 167, 69, 0.1);
+}
+
+.contest-artwork.candidate {
+    border: 2px solid #ffc107;
+    background-color: rgba(255, 193, 7, 0.1);
+}
+
+.contest-artwork:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+.artwork-info {
+    padding: 0.5rem;
+}
+
+.artwork-info h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+}
+
+#contestArtworksContainer img {
+    max-height: 300px;
+    width: auto;
+    display: block;
+    margin: 0 auto;
+}
+.contest-description {
+    background: rgba(0, 0, 0, 0.7);
+    border-left: 3px solid var(--admin-gold);
+    padding: 15px;
+    margin: 20px 0;
+    border-radius: 0 5px 5px 0;
+    font-style: italic;
+    line-height: 1.6;
+    position: relative;
+}
+
+.contest-description:before {
+    content: '“';
+    font-size: 4em;
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    color: rgba(255, 215, 0, 0.2);
+    font-family: serif;
+}

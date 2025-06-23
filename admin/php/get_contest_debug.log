@@ -1,0 +1,650 @@
+
+2025-05-26 04:59:28 - New request
+Contest ID: 2
+Contest manager created
+Contest data: Array
+(
+    [id] => 2
+    [title] => fgfg
+    [description] => wde
+    [start_date] => 2025-05-26 06:35:00
+    [end_date] => 2025-05-27 06:35:00
+)
+
+Response: {"status":"success","data":{"id":2,"title":"fgfg","description":"wde","start_date":"2025-05-26 06:35:00","end_date":"2025-05-27 06:35:00"}}
+
+2025-05-26 04:59:37 - New request
+Contest ID: 4
+Contest manager created
+Contest data: Array
+(
+    [id] => 4
+    [title] => вцу
+    [description] => цуцу
+    [start_date] => 2025-05-26 08:08:00
+    [end_date] => 2025-05-26 08:08:00
+)
+
+Response: {"status":"success","data":{"id":4,"title":"\u0432\u0446\u0443","description":"\u0446\u0443\u0446\u0443","start_date":"2025-05-26 08:08:00","end_date":"2025-05-26 08:08:00"}}
+
+2025-05-26 05:00:30 - New request
+Contest ID: 3
+Contest manager created
+Contest data: Array
+(
+    [id] => 3
+    [title] => Тест конкурс
+    [description] => Кидайте всё
+    [start_date] => 2025-05-26 06:47:00
+    [end_date] => 2025-05-26 03:49:00
+)
+
+Response: {"status":"success","data":{"id":3,"title":"\u0422\u0435\u0441\u0442 \u043a\u043e\u043d\u043a\u0443\u0440\u0441","description":"\u041a\u0438\u0434\u0430\u0439\u0442\u0435 \u0432\u0441\u0451","start_date":"2025-05-26 06:47:00","end_date":"2025-05-26 03:49:00"}}
+
+2025-05-26 05:00:45 - New request
+Contest ID: 4
+Contest manager created
+Contest data: Array
+(
+    [id] => 4
+    [title] => вцу
+    [description] => цуцу
+    [start_date] => 2025-05-26 08:08:00
+    [end_date] => 2025-05-26 08:08:00
+)
+
+Response: {"status":"success","data":{"id":4,"title":"\u0432\u0446\u0443","description":"\u0446\u0443\u0446\u0443","start_date":"2025-05-26 08:08:00","end_date":"2025-05-26 08:08:00"}}
+
+2025-05-26 13:52:04 - New request
+Contest ID: 3
+Contest manager created
+Contest data: Array
+(
+    [id] => 3
+    [title] => Тест конкурс
+    [description] => Кидайте всё
+    [start_date] => 2025-05-26 06:47:00
+    [end_date] => 2025-05-26 03:49:00
+)
+
+Response: {"status":"success","data":{"id":3,"title":"\u0422\u0435\u0441\u0442 \u043a\u043e\u043d\u043a\u0443\u0440\u0441","description":"\u041a\u0438\u0434\u0430\u0439\u0442\u0435 \u0432\u0441\u0451","start_date":"2025-05-26 06:47:00","end_date":"2025-05-26 03:49:00"}}
+
+2025-05-26 13:55:02 - New request
+Contest ID: 4
+Contest manager created
+Contest data: Array
+(
+    [id] => 4
+    [title] => вцу
+    [description] => цуцу
+    [start_date] => 2025-05-26 08:08:00
+    [end_date] => 2025-05-26 08:08:00
+)
+
+Response: {"status":"success","data":{"id":4,"title":"\u0432\u0446\u0443","description":"\u0446\u0443\u0446\u0443","start_date":"2025-05-26 08:08:00","end_date":"2025-05-26 08:08:00"}}
+
+2025-05-26 14:15:36 - New request
+Contest ID: 2
+Contest manager created
+Contest data: Array
+(
+    [id] => 2
+    [title] => fgfg
+    [description] => wde
+    [start_date] => 2025-05-26 06:35:00
+    [end_date] => 2025-05-27 06:35:00
+)
+
+Response: {"status":"success","data":{"id":2,"title":"fgfg","description":"wde","start_date":"2025-05-26 06:35:00","end_date":"2025-05-27 06:35:00"}}
+
+2025-05-26 15:05:59 - New request
+Contest ID: 4
+Contest manager created
+Contest data: Array
+(
+    [id] => 4
+    [title] => вцу
+    [description] => цуцу
+    [start_date] => 2025-05-26 08:08:00
+    [end_date] => 2025-05-26 08:08:00
+)
+
+Response: {"status":"success","data":{"id":4,"title":"\u0432\u0446\u0443","description":"\u0446\u0443\u0446\u0443","start_date":"2025-05-26 08:08:00","end_date":"2025-05-26 08:08:00"}}
+
+2025-05-26 15:17:08 - New request
+Contest ID: 2
+Contest manager created
+Contest data: Array
+(
+    [id] => 2
+    [title] => fgfg
+    [description] => wde
+    [start_date] => 2025-05-26 06:35:00
+    [end_date] => 2025-05-27 06:35:00
+)
+
+Response: {"status":"success","data":{"id":2,"title":"fgfg","description":"wde","start_date":"2025-05-26 06:35:00","end_date":"2025-05-27 06:35:00"}}
+
+2025-05-26 15:40:29 - New request
+Contest ID: 4
+Contest manager created
+Contest data: Array
+(
+    [id] => 4
+    [title] => вцу
+    [description] => цуцу
+    [start_date] => 2025-05-26 08:08:00
+    [end_date] => 2025-05-26 08:08:00
+)
+
+Response: {"status":"success","data":{"id":4,"title":"\u0432\u0446\u0443","description":"\u0446\u0443\u0446\u0443","start_date":"2025-05-26 08:08:00","end_date":"2025-05-26 08:08:00"}}
+
+2025-05-26 15:40:55 - New request
+Contest ID: 2
+Contest manager created
+Contest data: Array
+(
+    [id] => 2
+    [title] => fgfg
+    [description] => wde
+    [start_date] => 2025-05-26 06:35:00
+    [end_date] => 2025-05-27 06:35:00
+)
+
+Response: {"status":"success","data":{"id":2,"title":"fgfg","description":"wde","start_date":"2025-05-26 06:35:00","end_date":"2025-05-27 06:35:00"}}
+
+2025-05-26 16:30:22 - New request
+Contest ID: 5
+Contest manager created
+Contest data: Array
+(
+    [id] => 5
+    [title] => Конкурс работ
+    [description] => Обычный конкурс
+    [start_date] => 2025-05-26 20:29:00
+    [end_date] => 2025-05-26 20:30:00
+)
+
+Response: {"status":"success","data":{"id":5,"title":"\u041a\u043e\u043d\u043a\u0443\u0440\u0441 \u0440\u0430\u0431\u043e\u0442","description":"\u041e\u0431\u044b\u0447\u043d\u044b\u0439 \u043a\u043e\u043d\u043a\u0443\u0440\u0441","start_date":"2025-05-26 20:29:00","end_date":"2025-05-26 20:30:00"}}
+
+2025-05-26 16:30:48 - New request
+Contest ID: 5
+Contest manager created
+Contest data: Array
+(
+    [id] => 5
+    [title] => Конкурс работ
+    [description] => Обычный конкурс
+    [start_date] => 2025-05-26 20:29:00
+    [end_date] => 2025-05-26 20:30:00
+)
+
+Response: {"status":"success","data":{"id":5,"title":"\u041a\u043e\u043d\u043a\u0443\u0440\u0441 \u0440\u0430\u0431\u043e\u0442","description":"\u041e\u0431\u044b\u0447\u043d\u044b\u0439 \u043a\u043e\u043d\u043a\u0443\u0440\u0441","start_date":"2025-05-26 20:29:00","end_date":"2025-05-26 20:30:00"}}
+
+2025-05-26 16:38:32 - New request
+Contest ID: 5
+Contest manager created
+Contest data: Array
+(
+    [id] => 5
+    [title] => Конкурс работ
+    [description] => Обычный конкурс
+    [start_date] => 2025-05-26 20:29:00
+    [end_date] => 2025-05-26 20:30:00
+)
+
+Response: {"status":"success","data":{"id":5,"title":"\u041a\u043e\u043d\u043a\u0443\u0440\u0441 \u0440\u0430\u0431\u043e\u0442","description":"\u041e\u0431\u044b\u0447\u043d\u044b\u0439 \u043a\u043e\u043d\u043a\u0443\u0440\u0441","start_date":"2025-05-26 20:29:00","end_date":"2025-05-26 20:30:00"}}
+
+2025-05-26 16:39:02 - New request
+Contest ID: 2
+Contest manager created
+Contest data: Array
+(
+    [id] => 2
+    [title] => fgfg
+    [description] => wde
+    [start_date] => 2025-05-26 06:35:00
+    [end_date] => 2025-05-27 06:35:00
+)
+
+Response: {"status":"success","data":{"id":2,"title":"fgfg","description":"wde","start_date":"2025-05-26 06:35:00","end_date":"2025-05-27 06:35:00"}}
+
+2025-05-26 16:39:39 - New request
+Contest ID: 5
+Contest manager created
+Contest data: Array
+(
+    [id] => 5
+    [title] => Конкурс работ
+    [description] => Обычный конкурс
+    [start_date] => 2025-05-26 20:29:00
+    [end_date] => 2025-05-26 20:30:00
+)
+
+Response: {"status":"success","data":{"id":5,"title":"\u041a\u043e\u043d\u043a\u0443\u0440\u0441 \u0440\u0430\u0431\u043e\u0442","description":"\u041e\u0431\u044b\u0447\u043d\u044b\u0439 \u043a\u043e\u043d\u043a\u0443\u0440\u0441","start_date":"2025-05-26 20:29:00","end_date":"2025-05-26 20:30:00"}}
+
+2025-05-26 16:47:04 - New request
+Contest ID: 5
+Contest manager created
+Contest data: Array
+(
+    [id] => 5
+    [title] => Конкурс работ
+    [description] => Обычный конкурс
+    [start_date] => 2025-05-26 20:29:00
+    [end_date] => 2025-05-26 20:30:00
+)
+
+Response: {"status":"success","data":{"id":5,"title":"\u041a\u043e\u043d\u043a\u0443\u0440\u0441 \u0440\u0430\u0431\u043e\u0442","description":"\u041e\u0431\u044b\u0447\u043d\u044b\u0439 \u043a\u043e\u043d\u043a\u0443\u0440\u0441","start_date":"2025-05-26 20:29:00","end_date":"2025-05-26 20:30:00"}}
+
+2025-05-26 16:47:32 - New request
+Contest ID: 5
+Contest manager created
+Contest data: Array
+(
+    [id] => 5
+    [title] => Конкурс работ
+    [description] => Обычный конкурс
+    [start_date] => 2025-05-26 20:29:00
+    [end_date] => 2025-05-26 20:30:00
+)
+
+Response: {"status":"success","data":{"id":5,"title":"\u041a\u043e\u043d\u043a\u0443\u0440\u0441 \u0440\u0430\u0431\u043e\u0442","description":"\u041e\u0431\u044b\u0447\u043d\u044b\u0439 \u043a\u043e\u043d\u043a\u0443\u0440\u0441","start_date":"2025-05-26 20:29:00","end_date":"2025-05-26 20:30:00"}}
+
+2025-05-26 16:47:38 - New request
+Contest ID: 5
+Contest manager created
+Contest data: Array
+(
+    [id] => 5
+    [title] => Конкурс работ
+    [description] => Обычный конкурс
+    [start_date] => 2025-05-26 20:29:00
+    [end_date] => 2025-05-26 20:30:00
+)
+
+Response: {"status":"success","data":{"id":5,"title":"\u041a\u043e\u043d\u043a\u0443\u0440\u0441 \u0440\u0430\u0431\u043e\u0442","description":"\u041e\u0431\u044b\u0447\u043d\u044b\u0439 \u043a\u043e\u043d\u043a\u0443\u0440\u0441","start_date":"2025-05-26 20:29:00","end_date":"2025-05-26 20:30:00"}}
+
+2025-05-26 17:03:46 - New request
+Contest ID: 5
+Contest manager created
+Contest data: Array
+(
+    [id] => 5
+    [title] => Конкурс работ
+    [description] => Обычный конкурс
+    [start_date] => 2025-05-26 20:29:00
+    [end_date] => 2025-05-26 20:30:00
+)
+
+Response: {"status":"success","data":{"id":5,"title":"\u041a\u043e\u043d\u043a\u0443\u0440\u0441 \u0440\u0430\u0431\u043e\u0442","description":"\u041e\u0431\u044b\u0447\u043d\u044b\u0439 \u043a\u043e\u043d\u043a\u0443\u0440\u0441","start_date":"2025-05-26 20:29:00","end_date":"2025-05-26 20:30:00"}}
+
+2025-05-26 17:03:51 - New request
+Contest ID: 5
+Contest manager created
+Contest data: Array
+(
+    [id] => 5
+    [title] => Конкурс работ
+    [description] => Обычный конкурс
+    [start_date] => 2025-05-26 13:29:00
+    [end_date] => 2025-05-26 13:30:00
+)
+
+Response: {"status":"success","data":{"id":5,"title":"\u041a\u043e\u043d\u043a\u0443\u0440\u0441 \u0440\u0430\u0431\u043e\u0442","description":"\u041e\u0431\u044b\u0447\u043d\u044b\u0439 \u043a\u043e\u043d\u043a\u0443\u0440\u0441","start_date":"2025-05-26 13:29:00","end_date":"2025-05-26 13:30:00"}}
+
+2025-05-26 17:16:56 - New request
+Contest ID: 5
+Contest manager created
+Contest data: Array
+(
+    [id] => 5
+    [title] => Конкурс работ
+    [description] => Обычный конкурс
+    [start_date] => 2025-05-26 13:29:00
+    [end_date] => 2025-05-26 13:30:00
+)
+
+Response: {"status":"success","data":{"id":5,"title":"\u041a\u043e\u043d\u043a\u0443\u0440\u0441 \u0440\u0430\u0431\u043e\u0442","description":"\u041e\u0431\u044b\u0447\u043d\u044b\u0439 \u043a\u043e\u043d\u043a\u0443\u0440\u0441","start_date":"2025-05-26 13:29:00","end_date":"2025-05-26 13:30:00"}}
+
+2025-05-26 17:17:30 - New request
+Contest ID: 6
+Contest manager created
+Contest data: Array
+(
+    [id] => 6
+    [title] => аа
+    [description] => ааа
+    [start_date] => 2025-05-26 21:17:00
+    [end_date] => 2025-05-26 21:17:00
+)
+
+Response: {"status":"success","data":{"id":6,"title":"\u0430\u0430","description":"\u0430\u0430\u0430","start_date":"2025-05-26 21:17:00","end_date":"2025-05-26 21:17:00"}}
+
+2025-05-26 17:19:53 - New request
+Contest ID: 7
+Contest manager created
+Contest data: Array
+(
+    [id] => 7
+    [title] => ввв
+    [description] => ввв
+    [start_date] => 2025-05-26 18:17:00
+    [end_date] => 2025-05-26 18:18:00
+)
+
+Response: {"status":"success","data":{"id":7,"title":"\u0432\u0432\u0432","description":"\u0432\u0432\u0432","start_date":"2025-05-26 18:17:00","end_date":"2025-05-26 18:18:00"}}
+
+2025-05-26 17:36:08 - New request
+Contest ID: 9
+Contest manager created
+Contest data: Array
+(
+    [id] => 9
+    [title] => ыва
+    [description] => ывывывыв
+    [start_date] => 2025-05-26 17:34:00
+    [end_date] => 2025-05-26 17:36:00
+)
+
+Response: {"status":"success","data":{"id":9,"title":"\u044b\u0432\u0430","description":"\u044b\u0432\u044b\u0432\u044b\u0432\u044b\u0432","start_date":"2025-05-26 17:34:00","end_date":"2025-05-26 17:36:00"}}
+
+2025-05-26 17:36:12 - New request
+Contest ID: 9
+Contest manager created
+Contest data: Array
+(
+    [id] => 9
+    [title] => ыва
+    [description] => ывывывыв
+    [start_date] => 2025-05-26 17:34:00
+    [end_date] => 2025-05-26 17:36:00
+)
+
+Response: {"status":"success","data":{"id":9,"title":"\u044b\u0432\u0430","description":"\u044b\u0432\u044b\u0432\u044b\u0432\u044b\u0432","start_date":"2025-05-26 17:34:00","end_date":"2025-05-26 17:36:00"}}
+
+2025-05-26 18:03:55 - New request
+Contest ID: 9
+Contest manager created
+Contest data: Array
+(
+    [id] => 9
+    [title] => ыва
+    [description] => ывывывыв
+    [start_date] => 2025-05-26 10:34:00
+    [end_date] => 2025-05-26 10:39:00
+)
+
+Response: {"status":"success","data":{"id":9,"title":"\u044b\u0432\u0430","description":"\u044b\u0432\u044b\u0432\u044b\u0432\u044b\u0432","start_date":"2025-05-26 10:34:00","end_date":"2025-05-26 10:39:00"}}
+
+2025-05-26 18:04:51 - New request
+Contest ID: 9
+Contest manager created
+Contest data: Array
+(
+    [id] => 9
+    [title] => ыва
+    [description] => Рисуйте уже че угодно
+    [start_date] => 2025-05-26 03:34:00
+    [end_date] => 2025-05-26 03:39:00
+)
+
+Response: {"status":"success","data":{"id":9,"title":"\u044b\u0432\u0430","description":"\u0420\u0438\u0441\u0443\u0439\u0442\u0435 \u0443\u0436\u0435 \u0447\u0435 \u0443\u0433\u043e\u0434\u043d\u043e","start_date":"2025-05-26 03:34:00","end_date":"2025-05-26 03:39:00"}}
+
+2025-05-26 18:09:10 - New request
+Contest ID: 9
+Contest manager created
+Contest data: Array
+(
+    [id] => 9
+    [title] => ыва
+    [description] => Рисуйте уже че угодноукЕЕЕКУЕ
+КЕ
+КЕ
+К
+ЕКУ
+Е
+    [start_date] => 2025-05-25 20:34:00
+    [end_date] => 2025-05-25 20:39:00
+)
+
+Response: {"status":"success","data":{"id":9,"title":"\u044b\u0432\u0430","description":"\u0420\u0438\u0441\u0443\u0439\u0442\u0435 \u0443\u0436\u0435 \u0447\u0435 \u0443\u0433\u043e\u0434\u043d\u043e\u0443\u043a\u0415\u0415\u0415\u041a\u0423\u0415\n\u041a\u0415\n\u041a\u0415\n\u041a\n\u0415\u041a\u0423\n\u0415","start_date":"2025-05-25 20:34:00","end_date":"2025-05-25 20:39:00"}}
+
+2025-05-26 18:21:44 - New request
+Contest ID: 9
+Contest manager created
+Contest data: Array
+(
+    [id] => 9
+    [title] => ыва
+    [description] => Рисуйте уже че угодноукЕЕЕКУЕ
+КЕ
+КЕ
+К
+ЕКУ
+Е
+    [start_date] => 2025-05-25 20:34:00
+    [end_date] => 2025-05-25 20:39:00
+)
+
+Response: {"status":"success","data":{"id":9,"title":"\u044b\u0432\u0430","description":"\u0420\u0438\u0441\u0443\u0439\u0442\u0435 \u0443\u0436\u0435 \u0447\u0435 \u0443\u0433\u043e\u0434\u043d\u043e\u0443\u043a\u0415\u0415\u0415\u041a\u0423\u0415\n\u041a\u0415\n\u041a\u0415\n\u041a\n\u0415\u041a\u0423\n\u0415","start_date":"2025-05-25 20:34:00","end_date":"2025-05-25 20:39:00"}}
+
+2025-05-26 18:21:53 - New request
+Contest ID: 9
+Contest manager created
+Contest data: Array
+(
+    [id] => 9
+    [title] => ыва
+    [description] => Рисуйте уже че угодноукЕЕЕКУЕ
+КЕ
+КЕ
+К
+ЕКУ
+Е
+    [start_date] => 2025-05-25 13:34:00
+    [end_date] => 2025-05-25 13:43:00
+)
+
+Response: {"status":"success","data":{"id":9,"title":"\u044b\u0432\u0430","description":"\u0420\u0438\u0441\u0443\u0439\u0442\u0435 \u0443\u0436\u0435 \u0447\u0435 \u0443\u0433\u043e\u0434\u043d\u043e\u0443\u043a\u0415\u0415\u0415\u041a\u0423\u0415\n\u041a\u0415\n\u041a\u0415\n\u041a\n\u0415\u041a\u0423\n\u0415","start_date":"2025-05-25 13:34:00","end_date":"2025-05-25 13:43:00"}}
+
+2025-05-26 18:41:27 - New request
+Contest ID: 9
+Contest manager created
+Contest data: Array
+(
+    [id] => 9
+    [title] => ыва
+    [description] => Рисуйте уже че угодноукЕЕЕКУЕ
+КЕ
+КЕ
+К
+ЕКУ
+Е
+    [start_date] => 2025-05-26 06:34:00
+    [end_date] => 2025-05-27 06:43:00
+)
+
+Response: {"status":"success","data":{"id":9,"title":"\u044b\u0432\u0430","description":"\u0420\u0438\u0441\u0443\u0439\u0442\u0435 \u0443\u0436\u0435 \u0447\u0435 \u0443\u0433\u043e\u0434\u043d\u043e\u0443\u043a\u0415\u0415\u0415\u041a\u0423\u0415\n\u041a\u0415\n\u041a\u0415\n\u041a\n\u0415\u041a\u0423\n\u0415","start_date":"2025-05-26 06:34:00","end_date":"2025-05-27 06:43:00"}}
+
+2025-05-26 19:17:58 - New request
+Contest ID: 10
+Contest manager created
+Contest data: Array
+(
+    [id] => 10
+    [title] => яччяч
+    [description] => чячя
+    [start_date] => 2025-05-26 22:45:00
+    [end_date] => 2025-05-26 22:45:00
+)
+
+Response: {"status":"success","data":{"id":10,"title":"\u044f\u0447\u0447\u044f\u0447","description":"\u0447\u044f\u0447\u044f","start_date":"2025-05-26 22:45:00","end_date":"2025-05-26 22:45:00"}}
+
+2025-05-26 19:18:13 - New request
+Contest ID: 10
+Contest manager created
+Contest data: Array
+(
+    [id] => 10
+    [title] => яччяч
+    [description] => чячя
+    [start_date] => 2025-05-26 11:45:00
+    [end_date] => 2025-05-26 15:45:00
+)
+
+Response: {"status":"success","data":{"id":10,"title":"\u044f\u0447\u0447\u044f\u0447","description":"\u0447\u044f\u0447\u044f","start_date":"2025-05-26 11:45:00","end_date":"2025-05-26 15:45:00"}}
+
+2025-05-26 19:18:23 - New request
+Contest ID: 10
+Contest manager created
+Contest data: Array
+(
+    [id] => 10
+    [title] => яччяч
+    [description] => чячя
+    [start_date] => 2025-05-26 04:45:00
+    [end_date] => 2025-05-26 08:50:00
+)
+
+Response: {"status":"success","data":{"id":10,"title":"\u044f\u0447\u0447\u044f\u0447","description":"\u0447\u044f\u0447\u044f","start_date":"2025-05-26 04:45:00","end_date":"2025-05-26 08:50:00"}}
+
+2025-05-26 19:18:35 - New request
+Contest ID: 10
+Contest manager created
+Contest data: Array
+(
+    [id] => 10
+    [title] => яччяч
+    [description] => чячя
+    [start_date] => 2025-05-25 22:45:00
+    [end_date] => 2025-05-26 01:50:00
+)
+
+Response: {"status":"success","data":{"id":10,"title":"\u044f\u0447\u0447\u044f\u0447","description":"\u0447\u044f\u0447\u044f","start_date":"2025-05-25 22:45:00","end_date":"2025-05-26 01:50:00"}}
+
+2025-05-26 19:19:27 - New request
+Contest ID: 11
+Contest manager created
+Contest data: Array
+(
+    [id] => 11
+    [title] => Тест
+    [description] => Тест
+    [start_date] => 2025-05-26 23:18:00
+    [end_date] => 2025-05-26 23:18:00
+)
+
+Response: {"status":"success","data":{"id":11,"title":"\u0422\u0435\u0441\u0442","description":"\u0422\u0435\u0441\u0442","start_date":"2025-05-26 23:18:00","end_date":"2025-05-26 23:18:00"}}
+
+2025-05-26 19:19:43 - New request
+Contest ID: 11
+Contest manager created
+Contest data: Array
+(
+    [id] => 11
+    [title] => Тест
+    [description] => Тест
+    [start_date] => 2025-05-26 23:18:00
+    [end_date] => 2025-05-26 23:18:00
+)
+
+Response: {"status":"success","data":{"id":11,"title":"\u0422\u0435\u0441\u0442","description":"\u0422\u0435\u0441\u0442","start_date":"2025-05-26 23:18:00","end_date":"2025-05-26 23:18:00"}}
+
+2025-05-26 19:22:44 - New request
+Contest ID: 11
+Contest manager created
+Contest data: Array
+(
+    [id] => 11
+    [title] => Тест
+    [description] => Тест
+    [start_date] => 2025-05-26 14:18:00
+    [end_date] => 2025-05-26 16:18:00
+)
+
+Response: {"status":"success","data":{"id":11,"title":"\u0422\u0435\u0441\u0442","description":"\u0422\u0435\u0441\u0442","start_date":"2025-05-26 14:18:00","end_date":"2025-05-26 16:18:00"}}
+
+2025-06-22 13:56:44 - New request
+Contest ID: 14
+Contest manager created
+Contest data: Array
+(
+    [id] => 14
+    [title] => Название
+    [description] => Описаааааааааааааааааааааание
+    [start_date] => 2025-06-22 14:56:00
+    [end_date] => 2025-06-23 17:56:00
+)
+
+Response: {"status":"success","data":{"id":14,"title":"\u041d\u0430\u0437\u0432\u0430\u043d\u0438\u0435","description":"\u041e\u043f\u0438\u0441\u0430\u0430\u0430\u0430\u0430\u0430\u0430\u0430\u0430\u0430\u0430\u0430\u0430\u0430\u0430\u0430\u0430\u0430\u0430\u0430\u0430\u0430\u043d\u0438\u0435","start_date":"2025-06-22 14:56:00","end_date":"2025-06-23 17:56:00"}}
+
+2025-06-22 23:10:34 - New request
+Contest ID: 14
+Contest manager created
+Contest data: Array
+(
+    [id] => 14
+    [title] => Название
+    [description] => Описаааааааааааааааааааааание
+    [start_date] => 2025-06-22 06:56:00
+    [end_date] => 2025-06-23 10:56:00
+)
+
+Response: {"status":"success","data":{"id":14,"title":"\u041d\u0430\u0437\u0432\u0430\u043d\u0438\u0435","description":"\u041e\u043f\u0438\u0441\u0430\u0430\u0430\u0430\u0430\u0430\u0430\u0430\u0430\u0430\u0430\u0430\u0430\u0430\u0430\u0430\u0430\u0430\u0430\u0430\u0430\u0430\u043d\u0438\u0435","start_date":"2025-06-22 06:56:00","end_date":"2025-06-23 10:56:00"}}
+
+2025-06-22 23:11:00 - New request
+Contest ID: 14
+Contest manager created
+Contest data: Array
+(
+    [id] => 14
+    [title] => Название
+    [description] => Описаааааааааааааааааааааание
+    [start_date] => 2025-06-21 23:56:00
+    [end_date] => 2025-06-22 18:56:00
+)
+
+Response: {"status":"success","data":{"id":14,"title":"\u041d\u0430\u0437\u0432\u0430\u043d\u0438\u0435","description":"\u041e\u043f\u0438\u0441\u0430\u0430\u0430\u0430\u0430\u0430\u0430\u0430\u0430\u0430\u0430\u0430\u0430\u0430\u0430\u0430\u0430\u0430\u0430\u0430\u0430\u0430\u043d\u0438\u0435","start_date":"2025-06-21 23:56:00","end_date":"2025-06-22 18:56:00"}}
+
+2025-06-23 16:18:48 - New request
+Contest ID: 14
+Contest manager created
+Contest data: Array
+(
+    [id] => 14
+    [title] => Название
+    [description] => Описаааааааааааааааааааааание
+    [start_date] => 2025-06-21 16:56:00
+    [end_date] => 2025-06-23 06:56:00
+)
+
+Response: {"status":"success","data":{"id":14,"title":"\u041d\u0430\u0437\u0432\u0430\u043d\u0438\u0435","description":"\u041e\u043f\u0438\u0441\u0430\u0430\u0430\u0430\u0430\u0430\u0430\u0430\u0430\u0430\u0430\u0430\u0430\u0430\u0430\u0430\u0430\u0430\u0430\u0430\u0430\u0430\u043d\u0438\u0435","start_date":"2025-06-21 16:56:00","end_date":"2025-06-23 06:56:00"}}
+
+2025-06-23 16:19:02 - New request
+Contest ID: 14
+Contest manager created
+Contest data: Array
+(
+    [id] => 14
+    [title] => Название
+    [description] => Описаааааааааааааааааааааание
+    [start_date] => 2025-06-21 09:56:00
+    [end_date] => 2025-06-23 13:56:00
+)
+
+Response: {"status":"success","data":{"id":14,"title":"\u041d\u0430\u0437\u0432\u0430\u043d\u0438\u0435","description":"\u041e\u043f\u0438\u0441\u0430\u0430\u0430\u0430\u0430\u0430\u0430\u0430\u0430\u0430\u0430\u0430\u0430\u0430\u0430\u0430\u0430\u0430\u0430\u0430\u0430\u0430\u043d\u0438\u0435","start_date":"2025-06-21 09:56:00","end_date":"2025-06-23 13:56:00"}}
+
+2025-06-23 16:19:11 - New request
+Contest ID: 14
+Contest manager created
+Contest data: Array
+(
+    [id] => 14
+    [title] => Название
+    [description] => Описаааааааааааааааааааааание
+    [start_date] => 2025-06-21 02:56:00
+    [end_date] => 2025-06-23 11:56:00
+)
+
+Response: {"status":"success","data":{"id":14,"title":"\u041d\u0430\u0437\u0432\u0430\u043d\u0438\u0435","description":"\u041e\u043f\u0438\u0441\u0430\u0430\u0430\u0430\u0430\u0430\u0430\u0430\u0430\u0430\u0430\u0430\u0430\u0430\u0430\u0430\u0430\u0430\u0430\u0430\u0430\u0430\u043d\u0438\u0435","start_date":"2025-06-21 02:56:00","end_date":"2025-06-23 11:56:00"}}

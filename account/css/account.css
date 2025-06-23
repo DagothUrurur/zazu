@@ -1,0 +1,415 @@
+/* Основные стили для личного кабинета */
+.account-main {
+    padding: 50px 0;
+    position: relative;
+    z-index: 1;
+}
+
+.account-sidebar {
+    background: rgba(10, 10, 10, 0.7);
+    border: 1px solid rgba(139, 0, 0, 0.3);
+    padding: 30px;
+    position: sticky;
+    top: 20px;
+    transition: all 0.3s ease;
+}
+
+.account-sidebar:hover {
+    border-color: var(--blood);
+    box-shadow: 0 0 20px rgba(139, 0, 0, 0.3);
+}
+
+.profile-card {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.avatar-container {
+    width: 150px;
+    height: 150px;
+    margin: 0 auto 20px;
+    position: relative;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2px solid var(--blood);
+    box-shadow: 0 0 15px rgba(139, 0, 0, 0.5);
+}
+
+.profile-avatar {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: all 0.3s ease;
+}
+
+.avatar-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+.avatar-container:hover .avatar-overlay {
+    opacity: 1;
+}
+
+.change-avatar-btn {
+    background: var(--blood);
+    color: white;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.change-avatar-btn:hover {
+    background: var(--blood-dark);
+    transform: scale(1.1);
+}
+
+.profile-username {
+    font-family: 'IM Fell English SC', serif;
+    color: var(--gold);
+    font-size: 1.5rem;
+    margin-bottom: 5px;
+}
+
+.profile-email {
+    color: var(--parchment-dark);
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+}
+
+.profile-bio {
+    background: rgba(5, 5, 5, 0.5);
+    border-left: 2px solid var(--blood);
+    padding: 10px;
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.profile-stats {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-bottom: 20px;
+}
+
+.stat-item {
+    text-align: center;
+}
+
+.stat-number {
+    display: block;
+    font-family: 'IM Fell English SC', serif;
+    color: var(--gold);
+    font-size: 1.5rem;
+    line-height: 1;
+}
+
+.stat-label {
+    font-size: 0.8rem;
+    color: var(--parchment-dark);
+}
+
+.account-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.menu-item {
+    color: var(--parchment);
+    text-decoration: none;
+    padding: 10px 15px;
+    border-left: 3px solid transparent;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.menu-item:hover, .menu-item.active {
+    color: var(--gold);
+    border-left: 3px solid var(--blood);
+    background: rgba(139, 0, 0, 0.1);
+}
+
+.menu-item i {
+    width: 20px;
+    text-align: center;
+}
+
+.account-content {
+    background: rgba(10, 10, 10, 0.7);
+    border: 1px solid rgba(139, 0, 0, 0.3);
+    padding: 30px;
+    min-height: 100%;
+}
+
+.account-title {
+    font-family: 'IM Fell English SC', serif;
+    color: var(--gold);
+    font-size: 2rem;
+    margin-bottom: 30px;
+    position: relative;
+    padding-bottom: 15px;
+}
+
+.account-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100px;
+    height: 1px;
+    background: var(--blood);
+}
+
+.action-buttons {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+}
+
+.upload-btn, .contest-btn {
+    background: linear-gradient(to right, var(--blood), var(--blood-dark));
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-family: 'IM Fell English SC', serif;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.upload-btn:hover, .contest-btn:hover {
+    box-shadow: 0 0 15px rgba(139, 0, 0, 0.5);
+    transform: translateY(-2px);
+}
+
+.contest-btn {
+    background: linear-gradient(to right, var(--gold-dark), var(--gold));
+    color: var(--darkest);
+}
+
+.contest-btn:hover {
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+}
+
+.user-gallery {
+    margin-top: 30px;
+}
+
+.section-title {
+    font-family: 'IM Fell English SC', serif;
+    color: var(--gold);
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.empty-gallery {
+    text-align: center;
+    padding: 50px 20px;
+    color: var(--parchment-dark);
+    border: 1px dashed rgba(139, 0, 0, 0.3);
+}
+
+.empty-gallery i {
+    font-size: 3rem;
+    margin-bottom: 15px;
+    color: rgba(139, 0, 0, 0.3);
+}
+
+.user-artwork {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(139, 0, 0, 0.3);
+    transition: all 0.3s ease;
+    height: 100%;
+}
+
+.user-artwork:hover {
+    border-color: var(--blood);
+    box-shadow: 0 0 15px rgba(139, 0, 0, 0.3);
+}
+
+.artwork-thumbnail {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.user-artwork:hover .artwork-thumbnail {
+    transform: scale(1.05);
+}
+
+.artwork-info {
+    padding: 15px;
+    background: rgba(5, 5, 5, 0.8);
+}
+
+.artwork-info h3 {
+    font-family: 'IM Fell English SC', serif;
+    color: var(--gold);
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+}
+
+.artwork-meta {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8rem;
+    color: var(--parchment-dark);
+    margin-bottom: 10px;
+}
+
+.contest-tag {
+    color: var(--gold);
+}
+
+.artwork-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.view-btn, .delete-btn {
+    background: none;
+    border: none;
+    color: var(--parchment);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    padding: 5px;
+}
+
+.view-btn:hover {
+    color: var(--gold);
+}
+
+.delete-btn:hover {
+    color: var(--blood);
+}
+
+/* Модальные окна */
+.modal-content {
+    background: var(--dark);
+    border: 1px solid var(--blood);
+    color: var(--parchment);
+}
+
+.modal-header {
+    border-bottom: 1px solid var(--blood-dark);
+}
+
+.modal-title {
+    font-family: 'IM Fell English SC', serif;
+    color: var(--gold);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.btn-close {
+    filter: invert(1) sepia(1) saturate(5) hue-rotate(175deg);
+}
+
+.form-control, .form-select {
+    background: rgba(5, 5, 5, 0.7);
+    border: 1px solid var(--blood-dark);
+    color: var(--parchment);
+}
+
+.form-control:focus, .form-select:focus {
+    background: rgba(5, 5, 5, 0.9);
+    border-color: var(--blood);
+    color: var(--parchment);
+    box-shadow: 0 0 0 0.25rem rgba(139, 0, 0, 0.25);
+}
+
+.form-text {
+    color: var(--parchment-dark) !important;
+}
+
+.form-check-input {
+    background-color: rgba(5, 5, 5, 0.7);
+    border: 1px solid var(--blood-dark);
+}
+
+.form-check-input:checked {
+    background-color: var(--blood);
+    border-color: var(--blood);
+}
+
+.submit-actions {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.submit-btn {
+    background: linear-gradient(to right, var(--blood), var(--blood-dark));
+    color: white;
+    border: none;
+    padding: 10px 30px;
+    font-family: 'IM Fell English SC', serif;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.submit-btn:hover {
+    box-shadow: 0 0 15px rgba(139, 0, 0, 0.5);
+    transform: translateY(-2px);
+}
+
+.current-avatar {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.current-avatar-img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 2px solid var(--blood);
+    box-shadow: 0 0 15px rgba(139, 0, 0, 0.5);
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .account-sidebar {
+        position: static;
+        margin-bottom: 30px;
+    }
+    
+    .profile-stats {
+        gap: 15px;
+    }
+    
+    .action-buttons {
+        flex-direction: column;
+    }
+    
+    .upload-btn, .contest-btn {
+        width: 100%;
+        justify-content: center;
+    }
+}
