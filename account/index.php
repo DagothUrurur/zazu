@@ -35,6 +35,8 @@ $artworks = $artworks_result->fetch_all(MYSQLI_ASSOC);
      <!-- Основные стили -->
      <link rel="stylesheet" href="../style.css">
     <link rel="stylesheet" href="css/account.css">
+    <link rel="stylesheet" href="../css/gallery.css">
+
 </head>
 <body>
     <!-- Туманный фон -->
@@ -59,16 +61,34 @@ $artworks = $artworks_result->fetch_all(MYSQLI_ASSOC);
                 </div>
                 <div class="col-md-8">
                     <nav class="nav-menu">
-                        <a href="index.php" class="nav-link">Главная</a>
-                        <a href="/php/archiv.php" class="nav-link">Архивы</a>
-                        <a href="/gallery.php" class="nav-link active">Галерея</a>
-                        <a href="confession.html" class="nav-link">Исповедь</a>
-                        <a href="auth/login.php" class="auth-btn"><?php echo $_SESSION["user_role"] ? "Убежище" : "Войти в Тень"; ?></a>
+                        <a href="../index.php" class="nav-link">Главная</a>
+                        <a href="../php/archiv.php" class="nav-link">Архивы</a>
+                        <a href="../gallery.php" class="nav-link active">Галерея</a>
+                        <a href="../auth/login.php" class="auth-btn">
+                            <?php echo (isset($_SESSION['user_id']) ? "Убежище" : "Войти в Тень"); ?>
+                        </a>
                     </nav>
+                    <div class="burger-menu">
+                        <span class="burger-line"></span>
+                        <span class="burger-line"></span>
+                        <span class="burger-line"></span>
+                    </div>
                 </div>
             </div>
         </div>
     </header>
+
+    <!-- Мобильное меню -->
+    <div id="mobileMenuContainer" class="mobile-menu">
+        <div class="mobile-menu-content">
+            <a href="../index.php" class="nav-link">Главная</a>
+            <a href="../php/archiv.php" class="nav-link">Архивы</a>
+            <a href="../gallery.php" class="nav-link active">Галерея</a>
+            <a href="../auth/login.php" class="auth-btn">
+                <?php echo (isset($_SESSION['user_id']) ? "Убежище" : "Войти в Тень"); ?>
+            </a>
+        </div>
+    </div>
 
     <!-- Основной контент -->
     <main class="account-main">
@@ -166,10 +186,6 @@ $artworks = $artworks_result->fetch_all(MYSQLI_ASSOC);
                                                         <?php if ($artwork['is_contest']): ?>
                                                             <span class="contest-tag"><i class="fas fa-trophy"></i> Конкурс</span>
                                                         <?php endif; ?>
-                                                    </div>
-                                                    <div class="artwork-actions">
-                                                        <a href="/gallery/view.php?id=<?= $artwork['id'] ?>" class="view-btn"><i class="fas fa-expand"></i></a>
-                                                        <button class="delete-btn" data-id="<?= $artwork['id'] ?>"><i class="fas fa-trash"></i></button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -280,10 +296,9 @@ $artworks = $artworks_result->fetch_all(MYSQLI_ASSOC);
             </div>
         </div>
     </footer>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-    <!-- Bootstrap JS + Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Кастомный JS -->
-    <script src="/account/js/account.js"></script>
+    <script src="../js/account.js"></script>
 </body>
 </html>

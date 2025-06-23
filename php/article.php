@@ -68,17 +68,34 @@ $gallery = $gallery_stmt->get_result();
                 </div>
                 <div class="col-md-8">
                     <nav class="nav-menu">
-                        <a href="../index.php" class="nav-link">Главная</a>
-                        <a href="archiv.php" class="nav-link active">Архивы</a>
-                        <a href="../gallery.php" class="nav-link">Галерея</a>
-                        <a href="confession.html" class="nav-link">Исповедь</a>
-                        <a href="../auth/login.php" class="auth-btn"><?php echo $_SESSION["user_role"] ? "Убежище" : "Войти в Тень"; ?>
+                        <a href="index.php" class="nav-link">Главная</a>
+                        <a href="/php/archiv.php" class="nav-link">Архивы</a>
+                        <a href="gallery.php" class="nav-link active">Галерея</a>
+                        <a href="../auth/login.php" class="auth-btn">
+                            <?php echo (isset($_SESSION['user_id']) ? "Убежище" : "Войти в Тень"); ?>
                         </a>
                     </nav>
+                    <div class="burger-menu">
+                        <span class="burger-line"></span>
+                        <span class="burger-line"></span>
+                        <span class="burger-line"></span>
+                    </div>
                 </div>
             </div>
         </div>
     </header>
+
+    <!-- Мобильное меню -->
+    <div id="mobileMenuContainer" class="mobile-menu">
+        <div class="mobile-menu-content">
+            <a href="index.php" class="nav-link">Главная</a>
+            <a href="/php/archiv.php" class="nav-link">Архивы</a>
+            <a href="gallery.php" class="nav-link active">Галерея</a>
+            <a href="../auth/login.php" class="auth-btn">
+                <?php echo (isset($_SESSION['user_id']) ? "Убежище" : "Войти в Тень"); ?>
+            </a>
+        </div>
+    </div>
 
 
     <!-- Основное содержимое статьи -->
