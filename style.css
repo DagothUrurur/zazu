@@ -1,899 +1,1058 @@
 /* Основные стили */
 :root {
-    --dark: #0a0a0a;
-    --darker: #050505;
-    --darkest: #010101;
-    --blood: #8b0000;
-    --blood-dark: #5a0000;
-    --gold: #ffd700;
-    --gold-dark: #b8860b;
-    --parchment: #b8a9a3;
-    --parchment-dark: #8a7e79;
-    --fog: rgba(200, 200, 200, 0.15);
+  --dark: #0a0a0a;
+  --darker: #050505;
+  --darkest: #010101;
+  --blood: #8b0000;
+  --blood-dark: #5a0000;
+  --gold: #ffd700;
+  --gold-dark: #b8860b;
+  --parchment: #b8a9a3;
+  --parchment-dark: #8a7e79;
+  --fog: rgba(200, 200, 200, 0.15);
 }
 
 body {
-    font-family: 'Cormorant Garamond', serif;
-    background-color: var(--dark);
-    color: var(--parchment);
-    line-height: 1.8;
-    overflow-x: hidden;
-    position: relative;
+  font-family: "Cormorant Garamond", serif;
+  background-color: var(--dark);
+  color: var(--parchment);
+  line-height: 1.8;
+  overflow-x: hidden;
+  position: relative;
 }
 
 /* Анимации */
 @keyframes fog-move {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
 }
 
 @keyframes flicker {
-    0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% { opacity: 1; }
-    20%, 22%, 24%, 55% { opacity: 0.3; }
+  0%,
+  19%,
+  21%,
+  23%,
+  25%,
+  54%,
+  56%,
+  100% {
+    opacity: 1;
+  }
+  20%,
+  22%,
+  24%,
+  55% {
+    opacity: 0.3;
+  }
 }
 
 @keyframes blood-drip {
-    0% { transform: translateY(-10px); opacity: 0; }
-    30% { opacity: 1; }
-    100% { transform: translateY(10px); opacity: 0; }
+  0% {
+    transform: translateY(-10px);
+    opacity: 0;
+  }
+  30% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(10px);
+    opacity: 0;
+  }
 }
 
 /* Туман */
 .fog-container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    pointer-events: none;
-    overflow: hidden;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  pointer-events: none;
+  overflow: hidden;
 }
 
 .fog-layer {
-    position: absolute;
-    width: 200%;
-    height: 100%;
-    background: url('img/fog-texture.png') repeat-x;
-    background-size: cover;
-    animation: fog-move 60s linear infinite;
-    opacity: 0.3;
+  position: absolute;
+  width: 200%;
+  height: 100%;
+  background: url("img/fog-texture.png") repeat-x;
+  background-size: cover;
+  animation: fog-move 60s linear infinite;
+  opacity: 0.3;
 }
 
 .fog-layer-1 {
-    animation-duration: 80s;
-    filter: blur(3px);
+  animation-duration: 80s;
+  filter: blur(3px);
 }
 
 .fog-layer-2 {
-    animation-duration: 120s;
-    animation-delay: -30s;
-    filter: blur(5px);
-    opacity: 0.2;
+  animation-duration: 120s;
+  animation-delay: -30s;
+  filter: blur(5px);
+  opacity: 0.2;
 }
 
 /* Силуэты */
 .silhouettes {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    pointer-events: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  pointer-events: none;
 }
 
 .silhouette {
-    position: absolute;
-    background: url('img/silhouette.png') no-repeat;
-    background-size: contain;
-    width: 200px;
-    height: 400px;
-    opacity: 0.05;
+  position: absolute;
+  background: url("img/silhouette.png") no-repeat;
+  background-size: contain;
+  width: 200px;
+  height: 400px;
+  opacity: 0.05;
 }
 
 .silhouette-1 {
-    top: 20%;
-    left: 5%;
+  top: 20%;
+  left: 5%;
 }
 
 .silhouette-2 {
-    top: 50%;
-    right: 10%;
-    transform: scaleX(-1);
+  top: 50%;
+  right: 10%;
+  transform: scaleX(-1);
 }
 
 .silhouette-3 {
-    bottom: 10%;
-    left: 30%;
-    opacity: 0.03;
+  bottom: 10%;
+  left: 30%;
+  opacity: 0.03;
 }
 
 /* Хэдер */
 .header {
-    background-color: rgba(10, 10, 10, 0.8);
-    border-bottom: 1px solid var(--blood);
-    backdrop-filter: blur(5px);
-    position: relative;
-    z-index: 1000;
-    transition: all 0.3s ease;
+  background-color: rgba(10, 10, 10, 0.8);
+  border-bottom: 1px solid var(--blood);
+  backdrop-filter: blur(5px);
+  position: relative;
+  z-index: 1000;
+  transition: all 0.3s ease;
 }
 
 .header.scrolled {
-    background-color: rgba(5, 5, 5, 0.95);
-    box-shadow: 0 2px 20px rgba(139, 0, 0, 0.3);
+  background-color: rgba(5, 5, 5, 0.95);
+  box-shadow: 0 2px 20px rgba(139, 0, 0, 0.3);
 }
 
 .logo {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .logo-img {
-    height: 40px;
-    margin-right: 15px;
-    filter: drop-shadow(0 0 5px rgba(255, 215, 0, 0.3));
+  height: 40px;
+  margin-right: 15px;
+  filter: drop-shadow(0 0 5px rgba(255, 215, 0, 0.3));
 }
 
 .logo-text {
-    font-family: 'IM Fell English SC', serif;
-    font-size: 1.5rem;
-    font-weight: bold;
-    background: linear-gradient(to right, var(--parchment), var(--gold));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    text-shadow: 0 0 10px rgba(139, 0, 0, 0.3);
+  font-family: "IM Fell English SC", serif;
+  font-size: 1.5rem;
+  font-weight: bold;
+  background: linear-gradient(to right, var(--parchment), var(--gold));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 10px rgba(139, 0, 0, 0.3);
 }
 
 .nav-menu {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    gap: 25px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 25px;
 }
 
 .nav-link {
-    color: var(--parchment);
-    text-decoration: none;
-    font-family: 'IM Fell English SC', serif;
-    font-size: 1.1rem;
-    position: relative;
-    padding: 5px 0;
-    transition: all 0.3s ease;
+  color: var(--parchment);
+  text-decoration: none;
+  font-family: "IM Fell English SC", serif;
+  font-size: 1.1rem;
+  position: relative;
+  padding: 5px 0;
+  transition: all 0.3s ease;
 }
 
 .nav-link:hover {
-    color: var(--gold);
+  color: var(--gold);
 }
 
 .nav-link::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 0;
-    height: 1px;
-    background: var(--blood);
-    transition: width 0.3s ease;
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--blood);
+  transition: width 0.3s ease;
 }
 
 .nav-link:hover::after {
-    width: 100%;
+  width: 100%;
 }
 
 .auth-btn {
-    background: linear-gradient(to right, var(--blood), var(--blood-dark));
-    color: white;
-    border: none;
-    padding: 8px 20px;
-    border-radius: 2px;
-    font-family: 'IM Fell English SC', serif;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 0 10px rgba(139, 0, 0, 0.5);
-    position: relative;
-    overflow: hidden;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    text-decoration: none;
+  background: linear-gradient(to right, var(--blood), var(--blood-dark));
+  color: white;
+  border: none;
+  padding: 8px 20px;
+  border-radius: 2px;
+  font-family: "IM Fell English SC", serif;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 10px rgba(139, 0, 0, 0.5);
+  position: relative;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
 }
 
 .auth-btn:hover {
-    box-shadow: 0 0 15px rgba(139, 0, 0, 0.7);
-    transform: translateY(-2px);
-    text-decoration: none;
+  box-shadow: 0 0 15px rgba(139, 0, 0, 0.7);
+  transform: translateY(-2px);
+  text-decoration: none;
 }
 
 .auth-btn::before {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: linear-gradient(
-        to bottom right,
-        rgba(255, 255, 255, 0) 45%,
-        rgba(255, 255, 255, 0.1) 50%,
-        rgba(255, 255, 255, 0) 55%
-    );
-    transform: rotate(30deg);
-    transition: all 0.5s ease;
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    to bottom right,
+    rgba(255, 255, 255, 0) 45%,
+    rgba(255, 255, 255, 0.1) 50%,
+    rgba(255, 255, 255, 0) 55%
+  );
+  transform: rotate(30deg);
+  transition: all 0.5s ease;
 }
 
 .auth-btn:hover::before {
-    left: 100%;
+  left: 100%;
 }
 
 /* Главный баннер */
 .main-banner {
-    background: url('img/banner-bg.png') no-repeat center;
-    background-size: cover;
-    height: 80vh;
-    min-height: 600px;
-    display: flex;
-    align-items: center;
-    position: relative;
-    overflow: hidden;
+  background: url("img/banner-bg.png") no-repeat center;
+  background-size: cover;
+  height: 80vh;
+  min-height: 600px;
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
 }
 
 .main-banner::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(
-        to bottom,
-        rgba(5, 5, 5, 0.8) 0%,
-        rgba(5, 5, 5, 0.6) 50%,
-        rgba(5, 5, 5, 0.8) 100%
-    );
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    rgba(5, 5, 5, 0.8) 0%,
+    rgba(5, 5, 5, 0.6) 50%,
+    rgba(5, 5, 5, 0.8) 100%
+  );
 }
 
 .banner-content {
-    position: relative;
-    z-index: 1;
-    text-align: center;
-    padding: 0 20px;
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: 0 20px;
 }
 
 .banner-title {
-    font-family: 'IM Fell English SC', serif;
-    font-size: 3.5rem;
-    color: var(--gold);
-    margin-bottom: 20px;
-    text-shadow: 0 0 10px rgba(139, 0, 0, 0.5);
-    animation: flicker 8s infinite;
+  font-family: "IM Fell English SC", serif;
+  font-size: 3.5rem;
+  color: var(--gold);
+  margin-bottom: 20px;
+  text-shadow: 0 0 10px rgba(139, 0, 0, 0.5);
+  animation: flicker 8s infinite;
 }
 
 .banner-text {
-    font-size: 1.5rem;
-    max-width: 800px;
-    margin: 0 auto 30px;
-    color: var(--parchment);
+  font-size: 1.5rem;
+  max-width: 800px;
+  margin: 0 auto 30px;
+  color: var(--parchment);
 }
 
 .cta-btn {
-    background: linear-gradient(to right, var(--blood), var(--blood-dark));
-    color: white;
-    border: none;
-    padding: 12px 30px;
-    font-family: 'IM Fell English SC', serif;
-    font-size: 1.2rem;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    position: relative;
-    overflow: hidden;
-    box-shadow: 0 0 15px rgba(139, 0, 0, 0.5);
-    border-radius: 2px;
+  background: linear-gradient(to right, var(--blood), var(--blood-dark));
+  color: white;
+  border: none;
+  padding: 12px 30px;
+  font-family: "IM Fell English SC", serif;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 0 15px rgba(139, 0, 0, 0.5);
+  border-radius: 2px;
 }
 
 .cta-btn:hover {
-    box-shadow: 0 0 20px rgba(139, 0, 0, 0.7);
-    transform: translateY(-3px);
+  box-shadow: 0 0 20px rgba(139, 0, 0, 0.7);
+  transform: translateY(-3px);
 }
 
 .blood-drip {
-    margin-left: 10px;
-    position: relative;
+  margin-left: 10px;
+  position: relative;
 }
 
 .blood-drip::after {
-    content: '\f043';
-    font-family: 'Font Awesome 5 Free';
-    font-weight: 900;
-    position: absolute;
-    top: 0;
-    left: 0;
-    color: var(--blood);
-    animation: blood-drip 2s infinite;
+  content: "\f043";
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: var(--blood);
+  animation: blood-drip 2s infinite;
 }
 
 /* Секции */
 .section-title {
-    font-family: 'IM Fell English SC', serif;
-    font-size: 2.5rem;
-    color: var(--gold);
-    margin-bottom: 50px;
-    position: relative;
-    display: inline-block;
+  font-family: "IM Fell English SC", serif;
+  font-size: 2.5rem;
+  color: var(--gold);
+  margin-bottom: 50px;
+  position: relative;
+  display: inline-block;
 }
 
 .title-border {
-    position: relative;
-    padding-bottom: 10px;
+  position: relative;
+  padding-bottom: 10px;
 }
 
 .title-border::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 1px;
-    background: linear-gradient(to right, transparent, var(--blood), transparent);
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--blood), transparent);
 }
 
 /* Карточки */
 .start-card {
-    background: rgba(10, 10, 10, 0.7);
-    border: 1px solid rgba(139, 0, 0, 0.3);
-    padding: 30px;
-    height: 100%;
-    position: relative;
-    transition: all 0.3s ease;
-    overflow: hidden;
+  background: rgba(10, 10, 10, 0.7);
+  border: 1px solid rgba(139, 0, 0, 0.3);
+  padding: 30px;
+  height: 100%;
+  position: relative;
+  transition: all 0.3s ease;
+  overflow: hidden;
 }
 
 .start-card:hover {
-    border-color: var(--blood);
-    box-shadow: 0 0 20px rgba(139, 0, 0, 0.3);
-    transform: translateY(-5px);
+  border-color: var(--blood);
+  box-shadow: 0 0 20px rgba(139, 0, 0, 0.3);
+  transform: translateY(-5px);
 }
 
 .card-icon {
-    font-size: 2.5rem;
-    color: var(--gold);
-    margin-bottom: 20px;
-    position: relative;
-    width: 60px;
-    height: 60px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  font-size: 2.5rem;
+  color: var(--gold);
+  margin-bottom: 20px;
+  position: relative;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .icon-halo {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    border: 1px solid rgba(255, 215, 0, 0.3);
-    border-radius: 50%;
-    animation: flicker 4s infinite;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 1px solid rgba(255, 215, 0, 0.3);
+  border-radius: 50%;
+  animation: flicker 4s infinite;
 }
 
 .start-card h3 {
-    font-family: 'IM Fell English SC', serif;
-    font-size: 1.5rem;
-    color: var(--gold);
-    margin-bottom: 15px;
+  font-family: "IM Fell English SC", serif;
+  font-size: 1.5rem;
+  color: var(--gold);
+  margin-bottom: 15px;
 }
 
 .start-card p {
-    margin-bottom: 20px;
+  margin-bottom: 20px;
 }
 
 .card-link {
-    color: var(--parchment);
-    text-decoration: none;
-    font-family: 'IM Fell English SC', serif;
-    transition: all 0.3s ease;
-    display: inline-flex;
-    align-items: center;
+  color: var(--parchment);
+  text-decoration: none;
+  font-family: "IM Fell English SC", serif;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
 }
 
 .card-link:hover {
-    color: var(--gold);
+  color: var(--gold);
 }
 
 .card-link i {
-    margin-left: 5px;
-    transition: transform 0.3s ease;
+  margin-left: 5px;
+  transition: transform 0.3s ease;
 }
 
 .card-link:hover i {
-    transform: translateX(3px);
+  transform: translateX(3px);
 }
 
 .card-stain {
-    position: absolute;
-    width: 100px;
-    height: 100px;
-    background: rgba(139, 0, 0, 0.05);
-    border-radius: 50%;
-    filter: blur(10px);
-    z-index: -1;
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  background: rgba(139, 0, 0, 0.05);
+  border-radius: 50%;
+  filter: blur(10px);
+  z-index: -1;
 }
 
 .stain-1 {
-    top: -30px;
-    right: -30px;
+  top: -30px;
+  right: -30px;
 }
 
 .stain-2 {
-    bottom: -20px;
-    left: -20px;
+  bottom: -20px;
+  left: -20px;
 }
 
 /* Статьи */
 .article-card {
-    background: rgba(10, 10, 10, 0.7);
-    border: 1px solid rgba(139, 0, 0, 0.3);
-    transition: all 0.3s ease;
-    position: relative;
-    height: 100%;
+  background: rgba(10, 10, 10, 0.7);
+  border: 1px solid rgba(139, 0, 0, 0.3);
+  transition: all 0.3s ease;
+  position: relative;
+  height: 100%;
 }
 
 .article-card:hover {
-    border-color: var(--blood);
-    box-shadow: 0 0 20px rgba(139, 0, 0, 0.3);
+  border-color: var(--blood);
+  box-shadow: 0 0 20px rgba(139, 0, 0, 0.3);
 }
 
 .article-badge {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background: var(--blood);
-    color: white;
-    padding: 3px 10px;
-    font-family: 'IM Fell English SC', serif;
-    font-size: 0.8rem;
-    z-index: 2;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: var(--blood);
+  color: white;
+  padding: 3px 10px;
+  font-family: "IM Fell English SC", serif;
+  font-size: 0.8rem;
+  z-index: 2;
 }
 
 .article-img-container {
-    position: relative;
-    overflow: hidden;
+  position: relative;
+  overflow: hidden;
 }
 
 .article-img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-    transition: transform 0.5s ease;
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  transition: transform 0.5s ease;
 }
 
 .img-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(to top, rgba(10, 10, 10, 0.8), transparent);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to top, rgba(10, 10, 10, 0.8), transparent);
 }
 
 .article-card:hover .article-img {
-    transform: scale(1.05);
+  transform: scale(1.05);
 }
 
 .article-content {
-    padding: 20px;
+  padding: 20px;
 }
 
 .article-content h3 {
-    font-family: 'IM Fell English SC', serif;
-    font-size: 1.3rem;
-    color: var(--gold);
-    margin-bottom: 10px;
+  font-family: "IM Fell English SC", serif;
+  font-size: 1.3rem;
+  color: var(--gold);
+  margin-bottom: 10px;
 }
 
 .article-meta {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 15px;
 }
 
 .blood-rating {
-    color: var(--blood);
-    font-family: 'IM Fell English SC', serif;
-    display: flex;
-    align-items: center;
+  color: var(--blood);
+  font-family: "IM Fell English SC", serif;
+  display: flex;
+  align-items: center;
 }
 
 .blood-rating i {
-    margin-right: 5px;
+  margin-right: 5px;
 }
 
 .read-more {
-    color: var(--parchment);
-    text-decoration: none;
-    font-family: 'IM Fell English SC', serif;
-    transition: all 0.3s ease;
+  color: var(--parchment);
+  text-decoration: none;
+  font-family: "IM Fell English SC", serif;
+  transition: all 0.3s ease;
 }
 
 .read-more:hover {
-    color: var(--gold);
+  color: var(--gold);
 }
 
 .read-more i {
-    margin-left: 5px;
-    transition: transform 0.3s ease;
+  margin-left: 5px;
+  transition: transform 0.3s ease;
 }
 
 .read-more:hover i {
-    transform: translateX(3px);
+  transform: translateX(3px);
 }
 
 /* Галерея */
 .artwork-card {
-    position: relative;
-    overflow: hidden;
-    height: 100%;
-    border: 1px solid rgba(139, 0, 0, 0.3);
-    transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  height: 100%;
+  border: 1px solid rgba(139, 0, 0, 0.3);
+  transition: all 0.3s ease;
 }
 
 .artwork-card:hover {
-    border-color: var(--blood);
-    box-shadow: 0 0 20px rgba(139, 0, 0, 0.3);
+  border-color: var(--blood);
+  box-shadow: 0 0 20px rgba(139, 0, 0, 0.3);
 }
 
 .artwork-img-container {
-    position: relative;
-    overflow: hidden;
+  position: relative;
+  overflow: hidden;
 }
 
 .artwork-img {
-    width: 100%;
-    height: 300px;
-    object-fit: cover;
-    transition: transform 0.5s ease;
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  transition: transform 0.5s ease;
 }
 
 .artwork-glitch {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: url('img/artwork1.jpg') no-repeat center;
-    background-size: cover;
-    opacity: 0;
-    mix-blend-mode: screen;
-    transition: all 0.3s ease;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url("img/artwork1.jpg") no-repeat center;
+  background-size: cover;
+  opacity: 0;
+  mix-blend-mode: screen;
+  transition: all 0.3s ease;
 }
 
 .artwork-card:hover .artwork-glitch {
-    opacity: 0.3;
-    animation: glitch-effect 0.5s infinite;
+  opacity: 0.3;
+  animation: glitch-effect 0.5s infinite;
 }
 
 .artwork-overlay {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    padding: 20px;
-    background: linear-gradient(to top, rgba(10, 10, 10, 0.9), transparent);
-    transform: translateY(100%);
-    transition: transform 0.3s ease;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 20px;
+  background: linear-gradient(to top, rgba(10, 10, 10, 0.9), transparent);
+  transform: translateY(100%);
+  transition: transform 0.3s ease;
 }
 
 .artwork-card:hover .artwork-overlay {
-    transform: translateY(0);
+  transform: translateY(0);
 }
 
 .artwork-overlay h3 {
-    font-family: 'IM Fell English SC', serif;
-    color: var(--gold);
-    margin-bottom: 5px;
+  font-family: "IM Fell English SC", serif;
+  color: var(--gold);
+  margin-bottom: 5px;
 }
 
 .artwork-overlay p {
-    font-size: 0.9rem;
-    margin-bottom: 15px;
+  font-size: 0.9rem;
+  margin-bottom: 15px;
 }
 
 .vote-btn {
-    background: var(--blood);
-    color: white;
-    border: none;
-    padding: 5px 15px;
-    font-family: 'IM Fell English SC', serif;
-    cursor: pointer;
-    transition: all 0.3s ease;
+  background: var(--blood);
+  color: white;
+  border: none;
+  padding: 5px 15px;
+  font-family: "IM Fell English SC", serif;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
 .vote-btn:hover {
-    background: var(--blood-dark);
+  background: var(--blood-dark);
 }
 
 .vote-btn i {
-    margin-right: 5px;
+  margin-right: 5px;
 }
 
 /* Мотивационный блок */
 .motivation-section {
-    position: relative;
-    overflow: hidden;
+  position: relative;
+  overflow: hidden;
 }
 
 .quote-container {
-    position: relative;
-    padding: 40px;
-    background: rgba(10, 10, 10, 0.7);
-    border: 1px solid rgba(139, 0, 0, 0.3);
+  position: relative;
+  padding: 40px;
+  background: rgba(10, 10, 10, 0.7);
+  border: 1px solid rgba(139, 0, 0, 0.3);
 }
 
 .quote {
-    font-family: 'IM Fell English SC', serif;
-    font-size: 1.8rem;
-    color: var(--gold);
-    margin-bottom: 20px;
-    position: relative;
-    z-index: 1;
+  font-family: "IM Fell English SC", serif;
+  font-size: 1.8rem;
+  color: var(--gold);
+  margin-bottom: 20px;
+  position: relative;
+  z-index: 1;
 }
 
 .quote-author {
-    font-style: italic;
-    color: var(--parchment-dark);
-    position: relative;
-    z-index: 1;
+  font-style: italic;
+  color: var(--parchment-dark);
+  position: relative;
+  z-index: 1;
 }
 
 .quote-stain {
-    position: absolute;
-    top: -50px;
-    right: -50px;
-    width: 200px;
-    height: 200px;
-    background: rgba(139, 0, 0, 0.05);
-    border-radius: 50%;
-    filter: blur(30px);
-    z-index: 0;
+  position: absolute;
+  top: -50px;
+  right: -50px;
+  width: 200px;
+  height: 200px;
+  background: rgba(139, 0, 0, 0.05);
+  border-radius: 50%;
+  filter: blur(30px);
+  z-index: 0;
 }
 
 /* Футер */
 .footer {
-    background: rgba(5, 5, 5, 0.9);
-    border-top: 1px solid var(--blood);
-    position: relative;
+  background: rgba(5, 5, 5, 0.9);
+  border-top: 1px solid var(--blood);
+  position: relative;
 }
 
 .footer-logo {
-    margin-bottom: 20px;
+  margin-bottom: 20px;
 }
 
 .footer-logo-img {
-    height: 30px;
-    margin-bottom: 10px;
-    filter: drop-shadow(0 0 5px rgba(255, 215, 0, 0.3));
+  height: 30px;
+  margin-bottom: 10px;
+  filter: drop-shadow(0 0 5px rgba(255, 215, 0, 0.3));
 }
 
 .footer-text {
-    font-size: 0.9rem;
-    color: var(--parchment-dark);
+  font-size: 0.9rem;
+  color: var(--parchment-dark);
 }
 
 .footer-title {
-    font-family: 'IM Fell English SC', serif;
-    color: var(--gold);
-    font-size: 1.3rem;
-    margin-bottom: 20px;
-    position: relative;
-    padding-bottom: 10px;
+  font-family: "IM Fell English SC", serif;
+  color: var(--gold);
+  font-size: 1.3rem;
+  margin-bottom: 20px;
+  position: relative;
+  padding-bottom: 10px;
 }
 
 .footer-title::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 50px;
-    height: 1px;
-    background: var(--blood);
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 50px;
+  height: 1px;
+  background: var(--blood);
 }
 
 .footer-nav {
-    list-style: none;
-    padding: 0;
+  list-style: none;
+  padding: 0;
 }
 
 .footer-nav li {
-    margin-bottom: 10px;
+  margin-bottom: 10px;
 }
 
 .footer-nav a {
-    color: var(--parchment);
-    text-decoration: none;
-    transition: all 0.3s ease;
-    position: relative;
-    padding-left: 15px;
+  color: var(--parchment);
+  text-decoration: none;
+  transition: all 0.3s ease;
+  position: relative;
+  padding-left: 15px;
 }
 
 .footer-nav a::before {
-    content: '>';
-    position: absolute;
-    left: 0;
-    color: var(--blood);
-    opacity: 0;
-    transition: all 0.3s ease;
+  content: ">";
+  position: absolute;
+  left: 0;
+  color: var(--blood);
+  opacity: 0;
+  transition: all 0.3s ease;
 }
 
 .footer-nav a:hover {
-    color: var(--gold);
-    padding-left: 20px;
+  color: var(--gold);
+  padding-left: 20px;
 }
 
 .footer-nav a:hover::before {
-    opacity: 1;
+  opacity: 1;
 }
 
 .social-links {
-    display: flex;
-    gap: 15px;
-    margin-bottom: 30px;
+  display: flex;
+  gap: 15px;
+  margin-bottom: 30px;
 }
 
 .social-link {
-    color: var(--parchment);
-    font-size: 1.3rem;
-    transition: all 0.3s ease;
+  color: var(--parchment);
+  font-size: 1.3rem;
+  transition: all 0.3s ease;
 }
 
 .social-link:hover {
-    color: var(--gold);
-    transform: translateY(-3px);
+  color: var(--gold);
+  transform: translateY(-3px);
 }
 
 .footer-credits {
-    font-size: 0.8rem;
-    color: var(--parchment-dark);
+  font-size: 0.8rem;
+  color: var(--parchment-dark);
 }
 
 /* Глитч эффект */
 @keyframes glitch-effect {
-    0% { transform: translate(0); }
-    20% { transform: translate(-3px, 3px); }
-    40% { transform: translate(-3px, -3px); }
-    60% { transform: translate(3px, 3px); }
-    80% { transform: translate(3px, -3px); }
-    100% { transform: translate(0); }
+  0% {
+    transform: translate(0);
+  }
+  20% {
+    transform: translate(-3px, 3px);
+  }
+  40% {
+    transform: translate(-3px, -3px);
+  }
+  60% {
+    transform: translate(3px, 3px);
+  }
+  80% {
+    transform: translate(3px, -3px);
+  }
+  100% {
+    transform: translate(0);
+  }
 }
 
 /* Стили для статьи про GIMP */
 .eldritch-article {
-    background: rgba(10, 5, 5, 0.9);
-    border-left: 3px solid var(--blood);
-    padding: 2rem;
-    position: relative;
-    overflow: hidden;
+  background: rgba(10, 5, 5, 0.9);
+  border-left: 3px solid var(--blood);
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
 }
 
 .blood-header {
-    color: var(--blood);
-    font-family: 'IM Fell English SC', serif;
-    text-shadow: 0 0 10px rgba(139, 0, 0, 0.5);
-    position: relative;
-    animation: flicker 5s infinite;
+  color: var(--blood);
+  font-family: "IM Fell English SC", serif;
+  text-shadow: 0 0 10px rgba(139, 0, 0, 0.5);
+  position: relative;
+  animation: flicker 5s infinite;
 }
 
 .dark-panel {
-    background: rgba(15, 0, 0, 0.7);
-    border: 1px solid var(--blood-dark);
-    padding: 1.5rem;
-    margin: 2rem 0;
-    position: relative;
+  background: rgba(15, 0, 0, 0.7);
+  border: 1px solid var(--blood-dark);
+  padding: 1.5rem;
+  margin: 2rem 0;
+  position: relative;
 }
 
 .dark-panel::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: url('img/corruption-pattern.png');
-    opacity: 0.03;
-    pointer-events: none;
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url("img/corruption-pattern.png");
+  opacity: 0.03;
+  pointer-events: none;
 }
 
 .glitch-text {
-    color: var(--parchment);
-    font-family: 'IM Fell English SC', serif;
-    position: relative;
-    display: inline-block;
+  color: var(--parchment);
+  font-family: "IM Fell English SC", serif;
+  position: relative;
+  display: inline-block;
 }
 
 .glitch-text:hover {
-    animation: glitch-effect 0.5s infinite;
+  animation: glitch-effect 0.5s infinite;
 }
 
 .eldritch-list {
-    list-style-type: none;
-    padding-left: 1rem;
+  list-style-type: none;
+  padding-left: 1rem;
 }
 
 .eldritch-list li {
-    position: relative;
-    padding-left: 2rem;
-    margin-bottom: 0.8rem;
+  position: relative;
+  padding-left: 2rem;
+  margin-bottom: 0.8rem;
 }
 
 .eldritch-list li::before {
-    content: '✥';
-    position: absolute;
-    left: 0;
-    color: var(--blood);
+  content: "✥";
+  position: absolute;
+  left: 0;
+  color: var(--blood);
 }
 
 .blood-text {
-    color: var(--blood);
-    font-weight: bold;
+  color: var(--blood);
+  font-weight: bold;
 }
 
 .strange-underline {
-    text-decoration: underline wavy var(--gold);
+  text-decoration: underline wavy var(--gold);
 }
 
 .whisper-text {
-    font-style: italic;
-    color: var(--parchment-dark);
+  font-style: italic;
+  color: var(--parchment-dark);
 }
 
 .void-text {
-    color: #3a3a3a;
-    font-weight: bold;
+  color: #3a3a3a;
+  font-weight: bold;
 }
 
 .old-god-text {
-    color: var(--gold-dark);
-    font-family: 'IM Fell English SC', serif;
+  color: var(--gold-dark);
+  font-family: "IM Fell English SC", serif;
 }
 
 .undead-text {
-    color: #7cff7c;
-    text-shadow: 0 0 5px #00ff00;
+  color: #7cff7c;
+  text-shadow: 0 0 5px #00ff00;
 }
 
 .portal-text {
-    background: linear-gradient(to right, var(--blood), purple);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+  background: linear-gradient(to right, var(--blood), purple);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .forbidden-text {
-    color: #ff00ff;
-    animation: forbidden-flicker 1s infinite;
+  color: #ff00ff;
+  animation: forbidden-flicker 1s infinite;
 }
 
 .prophecy {
-    border: 1px dashed var(--gold);
-    padding: 1.5rem;
-    margin-top: 3rem;
-    text-align: center;
-    position: relative;
+  border: 1px dashed var(--gold);
+  padding: 1.5rem;
+  margin-top: 3rem;
+  text-align: center;
+  position: relative;
 }
 
 .prophecy::after {
-    content: '';
-    position: absolute;
-    bottom: -15px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 30px;
-    height: 30px;
-    background: url('img/elder-sign.png') no-repeat;
-    background-size: contain;
-    opacity: 0.5;
+  content: "";
+  position: absolute;
+  bottom: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 30px;
+  height: 30px;
+  background: url("img/elder-sign.png") no-repeat;
+  background-size: contain;
+  opacity: 0.5;
 }
 
 @keyframes forbidden-flicker {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.3; }
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.3;
+  }
+}
+@media (max-width: 992px) {
+  .header {
+    position: relative;
+    padding: 10px 0;
+  }
+
+  .header .container {
+    padding: 0 15px;
+  }
+
+  .logo {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .logo-img {
+    width: 40px;
+    height: 40px;
+  }
+
+  .logo-text {
+    font-size: 1rem;
+    margin-left: 10px;
+  }
+}
+/* ==================== */
+/* МОБИЛЬНОЕ МЕНЮ - CSS */
+/* ==================== */
+
+/* Базовые стили для контейнера меню (всегда скрыт по умолчанию) */
+#mobileMenuContainer {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 80%;
+  max-width: 300px;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.95);
+  z-index: 1000;
+  padding: 70px 20px 20px;
+  /* Убрали transition из здесь */
+}
+/* Состояние открытого меню */
+#mobileMenuContainer.active {
+  transform: translateX(0);
+  opacity: 1;
+  display: block;
+}
+
+/* Стили для ссылок в меню */
+#mobileMenuContainer .nav-link {
+  display: block;
+  padding: 15px;
+  margin: 8px 0;
+  color: #fff;
+  font-size: 1.1rem;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.2s ease;
+}
+
+#mobileMenuContainer .nav-link:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Стили для кнопки авторизации */
+#mobileMenuContainer .auth-btn {
+  display: block;
+  margin-top: 20px;
+  padding: 12px;
+  text-align: center;
+  background: #3a3a3a;
+  color: white;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: background-color 0.2s ease;
+}
+
+#mobileMenuContainer .auth-btn:hover {
+  background-color: #4a4a4a;
+}
+
+/* Стили для бургер-кнопки */
+.burger-menu {
+  display: none; /* По умолчанию скрыта */
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 20px;
+  cursor: pointer;
+  z-index: 1001;
+  position: relative;
+}
+
+.burger-line {
+  width: 100%;
+  height: 2px;
+  background: #fff;
+  transition: all 0.3s ease;
+}
+
+/* Анимация бургера при открытии */
+.burger-menu.active .burger-line:nth-child(1) {
+  transform: translateY(9px) rotate(45deg);
+}
+
+.burger-menu.active .burger-line:nth-child(2) {
+  opacity: 0;
+}
+
+.burger-menu.active .burger-line:nth-child(3) {
+  transform: translateY(-9px) rotate(-45deg);
 }

@@ -1,20 +1,42 @@
 <?php
 require_once('db.php');
 session_start();
-// Получаем категорию из URL (если есть)
-$category = isset($_GET['category']) ? $_GET['category'] : 'all';
 
-// Подготовка SQL запроса
+$category = isset($_GET['category']) ? $_GET['category'] : 'all';
+$page = isset($_GET['page']) && is_numeric($_GET['page']) ? (int)$_GET['page'] : 1;
+$articlesPerPage = 6; // количество статей на странице
+
+// Подсчёт общего количества статей
 if ($category === 'all') {
-    $stmt = $conn->prepare("SELECT * FROM articles WHERE status = 'published' ORDER BY created_at DESC");
+    $countStmt = $conn->prepare("SELECT COUNT(*) as total FROM articles WHERE status = 'published'");
 } else {
-    $stmt = $conn->prepare("SELECT * FROM articles WHERE category = ? AND status = 'published' ORDER BY created_at DESC");
-    $stmt->bind_param("s", $category);
+    $countStmt = $conn->prepare("SELECT COUNT(*) as total FROM articles WHERE category = ? AND status = 'published'");
+    $countStmt->bind_param("s", $category);
+}
+$countStmt->execute();
+$countResult = $countStmt->get_result()->fetch_assoc();
+$totalArticles = $countResult['total'];
+
+// Вычисляем количество страниц
+$totalPages = ceil($totalArticles / $articlesPerPage);
+if ($page < 1) $page = 1;
+if ($page > $totalPages) $page = $totalPages;
+
+// Вычисляем OFFSET для SQL
+$offset = ($page - 1) * $articlesPerPage;
+
+// Получаем статьи для текущей страницы
+if ($category === 'all') {
+    $stmt = $conn->prepare("SELECT * FROM articles WHERE status = 'published' ORDER BY created_at DESC LIMIT ?, ?");
+    $stmt->bind_param("ii", $offset, $articlesPerPage);
+} else {
+    $stmt = $conn->prepare("SELECT * FROM articles WHERE category = ? AND status = 'published' ORDER BY created_at DESC LIMIT ?, ?");
+    $stmt->bind_param("sii", $category, $offset, $articlesPerPage);
 }
 
 $stmt->execute();
 $articles = $stmt->get_result();
-?>>
+?>
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -29,6 +51,8 @@ $articles = $stmt->get_result();
     <link rel="stylesheet" href="../style.css">
     <!-- Стили для страницы архивов -->
     <link rel="stylesheet" href="../css/archives.css">
+    <link rel="stylesheet" href="../css/gallery.css">
+
 </head>
 <body>
     <!-- Туманный фон -->
@@ -45,26 +69,43 @@ $articles = $stmt->get_result();
     </div>
 
     <!-- Хэдер -->
-    <header class="header">
-        <div class="container">
-            <div class="row align-items-center py-3">
-                <div class="col-md-4 logo">
-                    <img src="img/logo.png" alt="Лого" class="logo-img">
-                    <span class="logo-text">Oblivion Scriptorium</span>
-                </div>
-                <div class="col-md-8">
-                    <nav class="nav-menu">
-                        <a href="../index.php" class="nav-link">Главная</a>
-                        <a href="archiv.php" class="nav-link active">Архивы</a>
-                        <a href="../gallery.php" class="nav-link">Галерея</a>
-                        <a href="confession.html" class="nav-link">Исповедь</a>
-                        <a href="../auth/login.php" class="auth-btn"><?php echo $_SESSION["user_role"] ? "Убежище" : "Войти в Тень"; ?>
-                        </a>
-                    </nav>
+   <header class="header">
+    <div class="container">
+        <div class="row align-items-center py-3">
+            <div class="col-md-4 logo">
+                <img src="img/logo.png" alt="Лого" class="logo-img">
+                <span class="logo-text">Oblivion Scriptorium</span>
+            </div>
+            <div class="col-md-8">
+                <nav class="nav-menu">
+                    <a href="index.php" class="nav-link">Главная</a>
+                    <a href="/php/archiv.php" class="nav-link">Архивы</a>
+                    <a href="gallery.php" class="nav-link active">Галерея</a>
+                    <a href="../auth/login.php" class="auth-btn">
+                        <?php echo (isset($_SESSION['user_id']) ? "Убежище" : "Войти в Тень"); ?>
+                    </a>
+                </nav>
+                <div class="burger-menu">
+                    <span class="burger-line"></span>
+                    <span class="burger-line"></span>
+                    <span class="burger-line"></span>
                 </div>
             </div>
         </div>
-    </header>
+    </div>
+</header>
+
+<!-- Мобильное меню -->
+<div id="mobileMenuContainer" class="mobile-menu">
+    <div class="mobile-menu-content">
+        <a href="index.php" class="nav-link">Главная</a>
+        <a href="/php/archiv.php" class="nav-link">Архивы</a>
+        <a href="gallery.php" class="nav-link active">Галерея</a>
+        <a href="../auth/login.php" class="auth-btn">
+            <?php echo (isset($_SESSION['user_id']) ? "Убежище" : "Войти в Тень"); ?>
+        </a>
+    </div>
+</div>
 
     <!-- Хлебные крошки -->
     <section class="breadcrumb-section">
@@ -164,17 +205,28 @@ $articles = $stmt->get_result();
             <div class="row">
                 <div class="col-12">
                     <nav class="archive-pagination">
-                        <ul class="pagination">
-                            <li class="page-item disabled">
-                                <a class="page-link" href="#" aria-label="Previous">
+                        <ul class="pagination justify-content-center">
+                            <!-- Кнопка Назад -->
+                            <li class="page-item <?= ($page <= 1) ? 'disabled' : '' ?>">
+                                <a class="page-link" href="?category=<?= urlencode($category) ?>&page=<?= $page - 1 ?>" aria-label="Previous">
                                     <span aria-hidden="true">&laquo;</span>
                                 </a>
                             </li>
-                            <li class="page-item active"><a class="page-link" href="">1</a></li>
-                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item">
-                                <a class="page-link" href="#" aria-label="Next">
+
+                            <?php
+                            // Покажем максимум 7 страниц (текущая ±3)
+                            $startPage = max(1, $page - 3);
+                            $endPage = min($totalPages, $page + 3);
+
+                            for ($i = $startPage; $i <= $endPage; $i++): ?>
+                                <li class="page-item <?= ($i == $page) ? 'active' : '' ?>">
+                                    <a class="page-link" href="?category=<?= urlencode($category) ?>&page=<?= $i ?>"><?= $i ?></a>
+                                </li>
+                            <?php endfor; ?>
+
+                            <!-- Кнопка Вперед -->
+                            <li class="page-item <?= ($page >= $totalPages) ? 'disabled' : '' ?>">
+                                <a class="page-link" href="?category=<?= urlencode($category) ?>&page=<?= $page + 1 ?>" aria-label="Next">
                                     <span aria-hidden="true">&raquo;</span>
                                 </a>
                             </li>
@@ -219,6 +271,7 @@ $articles = $stmt->get_result();
             </div>
         </div>
     </footer>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <!-- Bootstrap JS + Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

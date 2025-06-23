@@ -27,6 +27,7 @@ $random_artworks = $conn->query("SELECT a.*, u.login as author FROM artworks a J
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&family=IM+Fell+English+SC&display=swap" rel="stylesheet">
     <!-- Кастомные стили -->
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/gallery.css">
 </head>
 <body>
     <!-- Туманный фон -->
@@ -43,26 +44,43 @@ $random_artworks = $conn->query("SELECT a.*, u.login as author FROM artworks a J
     </div>
 
     <!-- Хэдер -->
-    <header class="header">
-        <div class="container">
-            <div class="row align-items-center py-3">
-                <div class="col-md-4 logo">
-                    <img src="img/logo.png" alt="Лого" class="logo-img">
-                    <span class="logo-text">Oblivion Scriptorium</span>
-                </div>
-                <div class="col-md-8">
-                    <nav class="nav-menu">
-                        <a href="index.php" class="nav-link">Главная</a>
-                        <a href="../php/archiv.php" class="nav-link">Архивы</a>
-                        <a href="gallery.php" class="nav-link">Галерея</a>
-                        <a href="#" class="nav-link">Исповедь</a>
-                        <a href="auth/login.php" class="auth-btn"><?php echo $_SESSION["user_role"] ? "Убежище" : "Войти в Тень"; ?>
-                        </a>
-                    </nav>
+<header class="header">
+    <div class="container">
+        <div class="row align-items-center py-3">
+            <div class="col-md-4 logo">
+                <img src="img/logo.png" alt="Лого" class="logo-img">
+                <span class="logo-text">Oblivion Scriptorium</span>
+            </div>
+            <div class="col-md-8">
+                <nav class="nav-menu">
+                    <a href="index.php" class="nav-link">Главная</a>
+                    <a href="/php/archiv.php" class="nav-link">Архивы</a>
+                    <a href="gallery.php" class="nav-link active">Галерея</a>
+                    <a href="../auth/login.php" class="auth-btn">
+                        <?php echo (isset($_SESSION['user_id']) ? "Убежище" : "Войти в Тень"); ?>
+                    </a>
+                </nav>
+                <div class="burger-menu">
+                    <span class="burger-line"></span>
+                    <span class="burger-line"></span>
+                    <span class="burger-line"></span>
                 </div>
             </div>
         </div>
-    </header>
+    </div>
+</header>
+
+<!-- Мобильное меню -->
+<div id="mobileMenuContainer" class="mobile-menu">
+    <div class="mobile-menu-content">
+        <a href="index.php" class="nav-link">Главная</a>
+        <a href="/php/archiv.php" class="nav-link">Архивы</a>
+        <a href="gallery.php" class="nav-link active">Галерея</a>
+        <a href="../auth/login.php" class="auth-btn">
+            <?php echo (isset($_SESSION['user_id']) ? "Убежище" : "Войти в Тень"); ?>
+        </a>
+    </div>
+</div>
 
     <!-- Главный баннер -->
     <section class="main-banner">
@@ -99,36 +117,6 @@ $random_artworks = $conn->query("SELECT a.*, u.login as author FROM artworks a J
             </div>
         </div>
     </section>
-
-    <!-- Популярные статьи -->
-    <section class="popular-articles py-5">
-        <div class="container">
-            <h2 class="section-title text-center mb-5"><span class="title-border">Проклятые Свитки</span></h2>
-            <div class="row">
-                <?php while ($article = $popular_articles->fetch_assoc()): ?>
-                <div class="col-md-6 col-lg-4 mb-4">
-                    <div class="article-card">
-                        <div class="article-badge">Просмотров: <?= $article['views'] ?></div>
-                        <div class="article-img-container">
-                            <img src="<?= $article['img'] ?>" alt="<?= htmlspecialchars($article['name']) ?>" class="article-img">
-                            <div class="img-overlay"></div>
-                        </div>
-                        <div class="article-content">
-                            <h3><?= htmlspecialchars($article['name']) ?></h3>
-                            <p><?= htmlspecialchars(mb_substr($article['description'], 0, 150)) ?>...</p>
-                            <div class="article-meta">
-                                <span class="blood-rating"><i class="fas fa-eye"></i> <?= $article['views'] ?></span>
-                                <a href="/php/article.php?id=<?= $article['id'] ?>" class="read-more">Читать <i class="fas fa-chevron-right"></i></a>
-                            </div>
-                        </div>
-                        <div class="card-stain stain-2"></div>
-                    </div>
-                </div>
-                <?php endwhile; ?>
-            </div>
-        </div>
-    </section>
-
     <!-- Лучшие работы недели -->
     <section class="top-artworks py-5">
         <div class="container">
@@ -202,7 +190,7 @@ $random_artworks = $conn->query("SELECT a.*, u.login as author FROM artworks a J
             </div>
         </div>
     </footer>
-
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <!-- Bootstrap JS + Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Кастомный JS -->
