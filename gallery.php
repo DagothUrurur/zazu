@@ -98,66 +98,43 @@ function formatTime($seconds) {
     </div>
 </div>
 
-         <!-- Конкурс недели -->
 <!-- Конкурс недели -->
 <section class="weekly-contest mt-5">
-    <div class="row">
-        <div class="col-12">
-            <div class="contest-header">
-                <?php
-                require_once __DIR__ . '/php/contest.php';
-                $contestManager = new Contest($conn);
-                
-                // Получаем активный конкурс
-                $activeContest = $contestManager->getActiveContest();
-                
-                // Если нет активного конкурса, проверяем последний завершенный
-                if (!$activeContest) {
-                    $lastContest = $contestManager->getLastFinishedContest();
-                    if ($lastContest) {
-                        // Показываем победителя последнего конкурса
-                        $winner = $conn->query("SELECT a.*, u.login as author 
-                                              FROM artworks a 
-                                              JOIN users u ON a.user_id = u.id 
-                                              WHERE a.id = {$lastContest['winner_artwork_id']}")->fetch_assoc();
-                        ?>
-                        <div class="d-flex justify-content-between align-items-center flex-wrap contest-header mb-3">
-    <h2 class="contest-title mb-0">
-        <i class="fas fa-trophy"></i> Конкурс "<?= htmlspecialchars($activeContest['title']) ?>"
-        <span class="contest-badge">Голосуйте!</span>
-    </h2>
-<div class="contest-timer text-end mt-2 mt-md-0" id="contestTimer">
-    <?php 
-    if (isset($activeContest)): 
-        $now = time();
-        $start = strtotime($activeContest['start_date']);
-        $end = strtotime($activeContest['end_date']);
-    ?>
-        <?php if ($now < $start): ?>
-            <i class="fas fa-hourglass-start"></i> До начала: <span class="time-remaining"><?= formatTime($start - $now) ?></span>
-        <?php elseif ($now < $end): ?>
-            <i class="fas fa-hourglass-half"></i> До конца: <span class="time-remaining"><?= formatTime($end - $now) ?></span>
-        <?php else: ?>
-            <i class="fas fa-hourglass-end"></i> Конкурс завершён
-            <?php if ($activeContest['winner_artwork_id']): ?>
-                <span class="badge bg-success ms-2">Победитель выбран</span>
-            <?php else: ?>
-                <span class="badge bg-warning ms-2">Идёт подсчёт</span>
-            <?php endif; ?>
-        <?php endif; ?>
-    <?php else: ?>
-        <i class="fas fa-hourglass-start"></i> Конкурс скоро начнётся
-    <?php endif; ?>
-</div>
-</div>
-
-                        </div>
-                        </div>
-                        </div>
-                        
-                        <div class="row contest-gallery">
-                            <div class="col-md-4 offset-md-4 mb-4">
-                                <div class="contest-artwork winner">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="contest-header">
+                    <?php
+                    require_once __DIR__ . '/php/contest.php';
+                    $contestManager = new Contest($conn);
+                    
+                    $activeContest = $contestManager->getActiveContest();
+                    
+                    if (!$activeContest) {
+                        $lastContest = $contestManager->getLastFinishedContest();
+                        if ($lastContest) {
+                            $winner = $conn->query("SELECT a.*, u.login as author 
+                                                  FROM artworks a 
+                                                  JOIN users u ON a.user_id = u.id 
+                                                  WHERE a.id = {$lastContest['winner_artwork_id']}")->fetch_assoc();
+                            ?>
+                            <div class="row align-items-center">
+                                <div class="col-md-8">
+                                    <h2 class="contest-title">
+                                        <i class="fas fa-trophy"></i> Конкурс "<?= htmlspecialchars($lastContest['title']) ?>"
+                                        <span class="contest-badge">Завершён</span>
+                                    </h2>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="contest-timer text-end">
+                                        <i class="fas fa-hourglass-end"></i> Конкурс завершён
+                                        <span class="badge bg-success ms-2">Победитель выбран</span>
+                                    </div>
+                                </div>
+                            </div>
+                        <div class="row contest-gallery mt-4">
+                                <div class="col-md-6 offset-md-3 mb-4">
+                                    <div class="contest-artwork winner">
                                     <div class="artwork-image-container">
                                         <img src="/uploads/artworks/<?= $winner['image_path'] ?>" 
                                              alt="<?= htmlspecialchars($winner['title']) ?>" 
@@ -180,74 +157,54 @@ function formatTime($seconds) {
                             </div>
                         </div>
                         
-                        <div class="row">
-                            <div class="col-12 text-center">
-                                <p class="contest-message">Новый конкурс будет объявлен в ближайшее время</p>
+                                                   <div class="row mt-3">
+                                <div class="col-12 text-center">
+                                    <p class="contest-message">Следите за новостями о следующем конкурсе</p>
+                                </div>
                             </div>
-                        </div>
-                        <?php
+                            <?php
+                        }
                     } else {
-                        // Нет ни активных, ни завершенных конкурсов
+                        $now = time();
+                        $start = strtotime($activeContest['start_date']);
+                        $end = strtotime($activeContest['end_date']);
                         ?>
-                        <h2 class="contest-title">
-                            <i class="fas fa-trophy"></i> Конкурс "Проклятый Шедевр"
-                        </h2>
-                        <div class="contest-timer">
-                            <i class="fas fa-hourglass-start"></i> Конкурс скоро начнётся
-                        </div>
-                        </div>
-                        </div>
+                        <div class="row align-items-center">
+                            <div class="col-md-8">
+                                <h2 class="contest-title">
+                                    <i class="fas fa-trophy"></i> Конкурс "<?= htmlspecialchars($activeContest['title']) ?>"
+                                    <span class="contest-badge">Голосуйте!</span>
+                                </h2>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="contest-timer text-end">
+                                    <?php if ($now < $start): ?>
+                                        <i class="fas fa-hourglass-start"></i> До начала: <?= formatTime($start - $now) ?>
+                                    <?php elseif ($now < $end): ?>
+                                        <i class="fas fa-hourglass-half"></i> До конца: <?= formatTime($end - $now) ?>
+                                    <?php else: ?>
+                                        <i class="fas fa-hourglass-end"></i> Конкурс завершён
+                                        <?php if ($activeContest['winner_artwork_id']): ?>
+                                            <span class="badge bg-success ms-2">Победитель выбран</span>
+                                        <?php else: ?>
+                                            <span class="badge bg-warning ms-2">Идёт подсчёт</span>
+                                        <?php endif; ?>
+                                    <?php endif; ?>
+                                </div>
+                                <div class="contest-timer-mobile d-none">
+                                    <?php if ($now < $start): ?>
+                                        <i class="fas fa-hourglass-start"></i> Начало через: <?= formatTime($start - $now) ?>
+                                    <?php elseif ($now < $end): ?>
+                                        <i class="fas fa-hourglass-half"></i> Осталось: <?= formatTime($end - $now) ?>
+                                    <?php else: ?>
+                                        <i class="fas fa-hourglass-end"></i> Голосование закрыто
+                                    <?php endif; ?>
+                                </div>
+                            </div>
                         </div>
                         
-                        <div class="row">
-                            <div class="col-12 text-center">
-                                <p class="contest-message">Следите за новостями о следующем конкурсе</p>
-                            </div>
-                        </div>
-                        <?php
-                    }
-                } else {
-                    // Есть активный конкурс
-                    $timeLeft = strtotime($activeContest['end_date']) - time();
-                    $daysLeft = floor($timeLeft / (60 * 60 * 24));
-                    $hoursLeft = floor(($timeLeft % (60 * 60 * 24)) / (60 * 60));
-                    $minutesLeft = floor(($timeLeft % (60 * 60)) / 60);
-                    $secondsLeft = $timeLeft % 60;
-                    ?>
-                    <h2 class="contest-title">
-                        <i class="fas fa-trophy"></i> Конкурс "<?= htmlspecialchars($activeContest['title']) ?>"
-                        <span class="contest-badge">Голосуйте!</span>
-                    </h2>
-                    <div class="contest-timer text-end mt-2 mt-md-0" id="contestTimer">
-    <?php 
-    if (isset($activeContest)): 
-        $now = time();
-        $start = strtotime($activeContest['start_date']);
-        $end = strtotime($activeContest['end_date']);
-    ?>
-        <?php if ($now < $start): ?>
-            <i class="fas fa-hourglass-start"></i> До начала: <span class="time-remaining"><?= formatTime($start - $now) ?></span>
-        <?php elseif ($now < $end): ?>
-            <i class="fas fa-hourglass-half"></i> До конца: <span class="time-remaining"><?= formatTime($end - $now) ?></span>
-        <?php else: ?>
-            <i class="fas fa-hourglass-end"></i> Конкурс завершён
-            <?php if ($activeContest['winner_artwork_id']): ?>
-                <span class="badge bg-success ms-2">Победитель выбран</span>
-            <?php else: ?>
-                <span class="badge bg-warning ms-2">Идёт подсчёт</span>
-            <?php endif; ?>
-        <?php endif; ?>
-    <?php else: ?>
-        <i class="fas fa-hourglass-start"></i> Конкурс скоро начнётся
-    <?php endif; ?>
-</div>
-
-                     
-                    </div>
-                    </div>
-                    </div>
                     
-                    <div class="row contest-gallery">
+                    <div class="row contest-gallery mt-4">
                         <?php
                         // Если конкурс завершен и есть победитель - показываем только победителя
                         if ($now >= $end && $activeContest['winner_artwork_id']) {
@@ -256,7 +213,7 @@ function formatTime($seconds) {
                                                   JOIN users u ON a.user_id = u.id 
                                                   WHERE a.id = {$activeContest['winner_artwork_id']}")->fetch_assoc();
                             ?>
-                            <div class="col-md-4 offset-md-4 mb-4">
+                            <div class="col-md-6 offset-md-3 mb-4">
                                 <div class="contest-artwork winner">
                                     <div class="artwork-image-container">
                                         <img src="/uploads/artworks/<?= $winner['image_path'] ?>" 
@@ -287,9 +244,9 @@ function formatTime($seconds) {
                                     $conn->query("SELECT id FROM likes WHERE artwork_id = {$artwork['id']} AND user_id = {$_SESSION['user_id']}")->num_rows > 0 : 
                                     false;
                                 $is_voted = isset($_SESSION['user_id']) ? 
-        $conn->query("SELECT id FROM votes WHERE artwork_id = {$artwork['id']} AND user_id = {$_SESSION['user_id']}")->num_rows > 0 : 
-        false;
-    $votes_count = $conn->query("SELECT COUNT(*) FROM votes WHERE artwork_id = {$artwork['id']}")->fetch_row()[0];
+                                    $conn->query("SELECT id FROM votes WHERE artwork_id = {$artwork['id']} AND user_id = {$_SESSION['user_id']}")->num_rows > 0 : 
+                                    false;
+                                $votes_count = $conn->query("SELECT COUNT(*) FROM votes WHERE artwork_id = {$artwork['id']}")->fetch_row()[0];
                             ?>
                             <div class="col-md-4 mb-4">
                                 <div class="contest-artwork">
@@ -310,23 +267,23 @@ function formatTime($seconds) {
                                             </div>
                                             <div class="artwork-actions">
                                                 <?php if ($artwork['is_contest']): ?>
-<button class="vote-btn <?= $is_voted ? 'voted' : '' ?>" 
-        data-artwork-id="<?= $artwork['id'] ?>">
-    <i class="<?= $is_voted ? 'fas' : 'far' ?> fa-medal"></i>
-    <span class="vote-count"><?= $votes_count ?></span>
-</button>
+                                                    <button class="vote-btn <?= $is_voted ? 'voted' : '' ?>" 
+                                                            data-artwork-id="<?= $artwork['id'] ?>">
+                                                        <i class="<?= $is_voted ? 'fas' : 'far' ?> fa-medal"></i>
+                                                        <span class="vote-count"><?= $votes_count ?></span>
+                                                    </button>
                                                 <?php endif; ?>
                                                 <button class="like-btn <?= $is_liked ? 'liked' : '' ?>" data-artwork-id="<?= $artwork['id'] ?>">
                                                     <i class="<?= $is_liked ? 'fas' : 'far' ?> fa-heart"></i>
                                                     <span class="like-count"><?= $artwork['likes_count'] ?></span>
                                                 </button>
-                                              <button class="view-btn" 
-        data-bs-toggle="modal" 
-        data-bs-target="#artworkModal" 
-        data-id="<?= $artwork['id'] ?>" 
-        data-contest="true">
-    <i class="fas fa-expand"></i>
-</button>
+                                                <button class="view-btn" 
+                                                        data-bs-toggle="modal" 
+                                                        data-bs-target="#artworkModal" 
+                                                        data-id="<?= $artwork['id'] ?>" 
+                                                        data-contest="true">
+                                                    <i class="fas fa-expand"></i>
+                                                </button>
                                             </div>
                                         </div>
                                         <div class="artwork-glitch"></div>
@@ -336,15 +293,17 @@ function formatTime($seconds) {
                             <?php endwhile; ?>
                         <?php } ?>
                     </div>
-                    <div class="row">
-    <div class="col-12">
-        <div class="contest-description-box my-4">
-            <?= nl2br(htmlspecialchars($activeContest['description'])) ?>
-        </div>
-    </div>
-</div>
+                    
+                    <div class="row mt-3">
+                        <div class="col-12">
+                            <div class="contest-description-box">
+                                <?= nl2br(htmlspecialchars($activeContest['description'])) ?>
+                            </div>
+                        </div>
+                    </div>
+                    
                     <?php if ($now < $end): ?>
-                        <div class="row">
+                        <div class="row mt-4">
                             <div class="col-12 text-center">
                                 <button class="submit-btn" data-bs-toggle="modal" data-bs-target="#submitModal">
                                     <i class="fas fa-upload"></i> Участвовать в конкурсе
@@ -353,6 +312,9 @@ function formatTime($seconds) {
                         </div>
                     <?php endif; ?>
                 <?php } ?>
+            </div>
+        </div>
+    </div>
 </section>
 
             <!-- Все работы -->

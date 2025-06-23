@@ -28,77 +28,7 @@
     font-style: italic;
 }
 
-/* Секция конкурса */
-.weekly-contest {
-    background-color: rgba(10, 10, 10, 0.7);
-    border: 1px solid rgba(139, 0, 0, 0.5);
-    padding: 30px;
-    border-radius: 5px;
-    margin-bottom: 50px;
-    position: relative;
-    overflow: hidden;
-}
 
-.weekly-contest::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: url('img/noise.png');
-    opacity: 0.03;
-    pointer-events: none;
-}
-
-.contest-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 30px;
-    flex-wrap: wrap;
-}
-
-.contest-title {
-    font-family: 'IM Fell English SC', serif;
-    font-size: 1.8rem;
-    color: var(--gold);
-    margin: 0;
-    display: flex;
-    align-items: center;
-}
-
-.contest-title i {
-    margin-right: 10px;
-    color: var(--gold-dark);
-}
-
-.contest-badge {
-    margin-left: 15px;
-    padding: 3px 10px;
-    background-color: var(--blood);
-    color: white;
-    font-size: 0.9rem;
-    border-radius: 3px;
-    animation: pulse 2s infinite;
-}
-
-.contest-timer {
-    font-family: 'IM Fell English SC', serif;
-    color: var(--parchment-dark);
-    font-size: 1.1rem;
-}
-
-.contest-timer i {
-    margin-right: 5px;
-    color: var(--gold-dark);
-}
-
-/* Карточки работ */
-.contest-artwork, .artwork-card {
-    position: relative;
-    transition: all 0.3s ease;
-}
 
 .artwork-image-container {
     position: relative;
@@ -982,85 +912,83 @@
     }
 }
 }
-/* Добавьте в конец файла gallery.css */
+/* Основные стили конкурса */
+.weekly-contest {
+    background-color: rgba(10, 10, 10, 0.7);
+    border: 1px solid rgba(139, 0, 0, 0.5);
+    padding: 30px;
+    border-radius: 5px;
+    margin-bottom: 50px;
+}
+
 .contest-header {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: flex-start;
-    flex-wrap: wrap;
     margin-bottom: 20px;
 }
 
-.contest-title-container {
-    flex: 1;
-    min-width: 200px;
-}
-
-.contest-timer-container {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-}
-
-.contest-timer-desktop {
-    text-align: right;
-}
-
-.contest-timer-mobile {
-    display: none;
-    margin-top: 10px;
-    font-size: 0.9rem;
+.contest-title {
+    font-family: 'IM Fell English SC', serif;
+    font-size: 1.8rem;
     color: var(--gold);
-    background: rgba(0,0,0,0.3);
-    padding: 8px 12px;
-    border-radius: 20px;
-    text-align: center;
-    width: 100%;
+    margin: 0;
+    display: flex;
+    align-items: center;
 }
 
-/* Адаптация для мобильных */
+.contest-timer {
+    font-family: 'IM Fell English SC', serif;
+    color: var(--parchment-dark);
+    font-size: 1.1rem;
+    white-space: nowrap;
+}
+
+.contest-gallery {
+    margin-top: 20px;
+}
+
+.contest-artwork {
+    margin-bottom: 30px;
+}
+
+.artwork-image-container {
+    height: 300px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Мобильная адаптация */
 @media (max-width: 768px) {
+    .weekly-contest {
+        padding: 20px;
+    }
+    
     .contest-header {
         flex-direction: column;
     }
     
-    .contest-title-container {
-        width: 100%;
-        margin-bottom: 10px;
-    }
-    
-    .contest-timer-container {
-        width: 100%;
-        align-items: flex-start;
-    }
-    
-    .contest-timer-desktop {
-        display: none !important;
-    }
-    
-    .contest-timer-mobile {
-        display: block;
-    }
-    
     .contest-title {
         font-size: 1.5rem;
+        margin-bottom: 15px;
     }
     
-    .contest-badge {
-        font-size: 0.8rem;
-        margin-left: 10px;
-    }
-}
-
-/* Для очень маленьких экранов */
-@media (max-width: 480px) {
-    .contest-title {
-        font-size: 1.3rem;
+    .contest-timer {
+        display: none;
     }
     
     .contest-timer-mobile {
-        font-size: 0.8rem;
-        padding: 6px 10px;
+        display: block !important;
+        width: 100%;
+        margin-top: 10px;
+        padding: 10px;
+        background: rgba(0,0,0,0.3);
+        border-radius: 5px;
+        text-align: center;
+    }
+    
+    .artwork-image-container {
+        height: 250px;
+    }
+    
+    .contest-gallery .col-md-4 {
+        margin-bottom: 20px;
     }
 }

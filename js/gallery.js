@@ -41,25 +41,29 @@ function formatTime(seconds) {
     // 2. Упрощенная функция обновления таймера
 function updateContestTimer() {
     const now = Math.floor(Date.now() / 1000);
-    const desktopTimer = $('#contestTimerDesktop');
-    const mobileTimer = $('#contestTimerMobile');
+    const desktopTimer = $('#contestTimer');
+    const mobileTimer = $('.contest-timer-mobile');
     
+    if (!desktopTimer.length || !mobileTimer.length) return;
+
     if (contestStart && contestEnd) {
         if (now < contestStart) {
             // До начала конкурса
             const diff = contestStart - now;
             const timeStr = formatTime(diff);
+            const mobileTimeStr = formatMobileTime(diff);
             
             desktopTimer.html(`<i class="fas fa-hourglass-start"></i> До начала: <span class="time-remaining">${timeStr}</span>`);
-            mobileTimer.html(`<i class="fas fa-hourglass-start"></i> Начало через: ${formatMobileTime(diff)}`);
+            mobileTimer.html(`<i class="fas fa-hourglass-start"></i> Начало через: <span class="time-remaining">${mobileTimeStr}</span>`);
         } 
         else if (now < contestEnd) {
             // Конкурс идёт
             const diff = contestEnd - now;
             const timeStr = formatTime(diff);
+            const mobileTimeStr = formatMobileTime(diff);
             
             desktopTimer.html(`<i class="fas fa-hourglass-half"></i> До конца: <span class="time-remaining">${timeStr}</span>`);
-            mobileTimer.html(`<i class="fas fa-hourglass-half"></i> Осталось: ${formatMobileTime(diff)}`);
+            mobileTimer.html(`<i class="fas fa-hourglass-half"></i> Осталось: <span class="time-remaining">${mobileTimeStr}</span>`);
             
             // Добавляем анимацию, если осталось меньше часа
             if (diff < 3600) {
@@ -79,9 +83,8 @@ function updateContestTimer() {
     }
 }
 
-// Специальный формат для мобильных
 function formatMobileTime(seconds) {
-    if (seconds <= 0) return '00:00:00';
+    if (seconds <= 0) return '00:00';
     
     const days = Math.floor(seconds / 86400);
     const hours = Math.floor((seconds % 86400) / 3600);
